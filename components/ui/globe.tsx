@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from 'three';
 import ThreeGlobe from 'three-globe';
 import { useThree, Canvas, extend } from '@react-three/fiber';
@@ -16,7 +16,6 @@ declare module '@react-three/fiber' {
 extend({ ThreeGlobe: ThreeGlobe });
 
 const RING_PROPAGATION_SPEED = 3;
-const aspect = 1.2;
 const cameraZ = 300;
 
 type Position = {
@@ -79,8 +78,8 @@ export function Globe({ globeConfig, data }: WorldProps) {
     shininess: 0.9,
     arcTime: 2000,
     arcLength: 0.9,
-    rings: 1,
-    maxRings: 3,
+    rings: 0,
+    maxRings: 0,
     ...globeConfig,
   };
 
@@ -103,16 +102,16 @@ export function Globe({ globeConfig, data }: WorldProps) {
       emissiveIntensity: number;
       shininess: number;
     };
-    globeMaterial.color = new Color(globeConfig.globeColor);
-    globeMaterial.emissive = new Color(globeConfig.emissive);
-    globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
-    globeMaterial.shininess = globeConfig.shininess || 0.9;
+    globeMaterial.color.set(defaultProps.globeColor);
+    globeMaterial.emissive.set(defaultProps.emissive);
+    globeMaterial.emissiveIntensity = defaultProps.emissiveIntensity ?? 0.1;
+    globeMaterial.shininess = defaultProps.shininess ?? 0.9;
   }, [
     isInitialized,
-    globeConfig.globeColor,
-    globeConfig.emissive,
-    globeConfig.emissiveIntensity,
-    globeConfig.shininess,
+    defaultProps.globeColor,
+    defaultProps.emissive,
+    defaultProps.emissiveIntensity,
+    defaultProps.shininess,
   ]);
 
   // Build data when globe is initialized or when data changes
@@ -199,49 +198,61 @@ export function Globe({ globeConfig, data }: WorldProps) {
   // Handle rings animation with cleanup
   useEffect(() => {
     if (!globeRef.current || !isInitialized || !data) return;
+    if ((defaultProps.rings ?? 0) <= 0) return; // ✅ do nothing when rings disabled
 
     const interval = setInterval(() => {
       if (!globeRef.current) return;
 
       const newNumbersOfRings = genRandomNumbers(0, data.length, Math.floor((data.length * 4) / 5));
-
       const ringsData = data
         .filter((d, i) => newNumbersOfRings.includes(i))
-        .map((d) => ({
-          lat: d.startLat,
-          lng: d.startLng,
-          color: d.color,
-        }));
+        .map((d) => ({ lat: d.startLat, lng: d.startLng, color: d.color }));
 
       globeRef.current.ringsData(ringsData);
     }, 2000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isInitialized, data]);
+    return () => clearInterval(interval);
+  }, [isInitialized, data, defaultProps.rings]);
 
   return <group ref={groupRef} />;
 }
 
 export function WebGLRendererConfig() {
-  const { gl, size } = useThree();
+  const { gl, size, camera } = useThree();
 
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
-    gl.setSize(size.width, size.height);
-    gl.setClearColor(0xffaaff, 0);
-  }, []);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    gl.setPixelRatio(dpr);
+    gl.setSize(size.width, size.height, true);
+
+    // keep camera aspect synced (prevents distortion)
+    if ('aspect' in camera) {
+      camera.aspect = size.width / size.height;
+      camera.updateProjectionMatrix?.();
+    }
+
+    gl.setClearColor(0x000000, 0);
+  }, [gl, size, camera]);
 
   return null;
 }
 
 export function World(props: WorldProps) {
   const { globeConfig } = props;
-  const scene = new Scene();
-  scene.fog = new Fog(0xffffff, 400, 2000);
+  const scene = useMemo(() => {
+    const s = new Scene();
+    s.fog = new Fog(0xffffff, 400, 2000);
+    return s;
+  }, []);
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
+    <Canvas
+      scene={scene}
+      camera={{
+        fov: 50,
+        near: 180,
+        far: 1800,
+        position: [0, 0, cameraZ], // IMPORTANT: stable camera position
+      }}>
       <WebGLRendererConfig />
       <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
       <directionalLight color={globeConfig.directionalLeftLight} position={new Vector3(-400, 100, 400)} />
@@ -263,12 +274,12 @@ export function World(props: WorldProps) {
 }
 
 export function hexToRgb(hex: string) {
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   hex = hex.replace(shorthandRegex, function (m, r, g, b) {
     return r + r + g + g + b + b;
   });
 
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
         r: parseInt(result[1], 16),
