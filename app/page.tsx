@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import { projects } from '@/lib/projects';
 import { MapPin, Layers } from 'lucide-react';
 import Link from 'next/link';
+import ExpandableCardDemo from '@/components/expandable-card-demo-standard';
 
 // Tech stack data for the expandable card
 const TECH_STACK = ['React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'MongoDB', 'Tailwind CSS', 'Docker'];
@@ -18,20 +19,20 @@ export default function Home() {
       <main className="mx-auto max-w-4xl px-6 pt-28 pb-16">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
         <section className="mt-36 mb-16 flex flex-col items-center">
-          <h1 className="text-6xl font-black sm:text-8xl tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">
-            Louis
-          </h1>
+          <h1 className="text-8xl font-black tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">Louis</h1>
           <p className="text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed">
             Technology as a bridge
           </p>
           <br />
-          <p className="text-base sm:text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed">
+          <p className="text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed">
             Connect. Build. Impact.
           </p>
         </section>
 
+        <ExpandableCardDemo />
+
         {/* ── EXPANDABLE CARDS ────────────────────────────────────── */}
-        <section className="mb-20 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <section className="mt-48 mb-20 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Based in Calgary */}
           <ExpandableCard title="Based in Calgary" icon={<MapPin className="h-4 w-4" />}>
             <dl className="space-y-2.5 text-sm">
