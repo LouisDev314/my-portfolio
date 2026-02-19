@@ -1,5 +1,6 @@
 import { Project } from '@/lib/projects';
 import { ExternalLink, Github } from 'lucide-react';
+import Badge from 'components/Badge';
 
 interface ProjectCardProps {
   project: Project;
@@ -25,11 +26,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* Tech badges */}
         <div className="flex flex-wrap gap-1.5 mb-4">
           {project.techs.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-neutral-200 bg-neutral-50 px-2.5 py-0.5 text-xs text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400">
-              {tech}
-            </span>
+            <Badge key={tech} title={tech} />
           ))}
         </div>
 

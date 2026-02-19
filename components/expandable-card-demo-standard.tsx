@@ -6,6 +6,8 @@ import { useOutsideClick } from '@/hooks/use-outside-click';
 import { MapPin, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Globe } from './Globe';
+import Badge from '@/components/Badge';
+import { TimeChip } from '@/components/TimeChip';
 
 export default function ExpandableCardDemo() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(null);
@@ -83,6 +85,8 @@ export default function ExpandableCardDemo() {
   );
 }
 
+const MY_TECHS = ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'];
+
 const cards = [
   {
     title: 'Based in Canada',
@@ -102,14 +106,25 @@ const cards = [
     iconColor: 'text-indigo-500',
     content: () => {
       return (
-        <p>
-          Babu Maan, a legendary Punjabi singer, is renowned for his soulful voice and profound lyrics that resonate
-          deeply with his audience. Born in the village of Khant Maanpur in Punjab, India, he has become a cultural icon
-          in the Punjabi music industry. <br /> <br /> His songs often reflect the struggles and triumphs of everyday
-          life, capturing the essence of Punjabi culture and traditions. With a career spanning over two decades, Babu
-          Maan has released numerous hit albums and singles that have garnered him a massive fan following both in India
-          and abroad.
-        </p>
+        <div className="relative w-full h-full rounded-3xl bg-white dark:bg-black overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="space-y-2 px-6 pt-8 pb-6">
+            <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
+              My Tech Stack
+            </h2>
+            <span className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
+              I build scalable, production-ready applications with modern technologies.
+            </span>
+          </motion.div>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {MY_TECHS.map((tech) => (
+              <Badge key={tech} title={tech} />
+            ))}
+          </div>
+        </div>
       );
     },
   },

@@ -157,7 +157,7 @@ export default function NavbarDrawer() {
                     onClick={() => setOpen(false)}
                     className="flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 transition-colors">
                     <div className="flex flex-row items-center">
-                      <text>Let's Connect</text>
+                      <p>Let's Connect</p>
                       <ExternalLink className="size-4 ml-2" />
                     </div>
                   </a>
