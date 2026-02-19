@@ -8,6 +8,7 @@ const eslintConfig = defineConfig([
   {
     rules: {
       // semi: ['error', 'always'],
+      indent: ['error', 2],
       '@typescript-eslint/no-unused-vars': ['error', { caughtErrors: 'none' }],
       'no-unused-expressions': 'error',
       quotes: ['error', 'single'],
