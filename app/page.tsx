@@ -17,14 +17,16 @@ export default function Home() {
 
       <main className="mx-auto max-w-4xl px-6 pt-28 pb-16">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
-        <section className="mb-16">
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">
+        <section className="mt-36 mb-16 flex flex-col items-center">
+          <h1 className="text-6xl font-black sm:text-8xl tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">
             Louis
           </h1>
-          <p className="text-lg sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed">
-            Technology as a bridge.
-            <br />
-            Connect. Build. Change.
+          <p className="text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed">
+            Technology as a bridge
+          </p>
+          <br />
+          <p className="text-base sm:text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed">
+            Connect. Build. Impact.
           </p>
         </section>
 
