@@ -1,15 +1,121 @@
+'use client';
+
 import NavbarDrawer from '@/components/NavbarDrawer';
-import ExpandableCard from '@/components/ExpandableCard';
 import ProjectCard from '@/components/ProjectCard';
 import ContactCard from '@/components/ContactCard';
 import Footer from '@/components/Footer';
 import { projects } from '@/lib/projects';
-import { MapPin, Layers } from 'lucide-react';
 import Link from 'next/link';
-import ExpandableCardDemo from '@/components/expandable-card-demo-standard';
+import { ExpandableCard, CardItem } from '@/components/ExpandableCard';
+import { MapPin, Layers } from 'lucide-react';
+import { motion } from 'motion/react';
+import Badge from '@/components/Badge';
+import { Globe } from '@/components/Globe';
 
-// Tech stack data for the expandable card
-const TECH_STACK = ['React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'MongoDB', 'Tailwind CSS', 'Docker'];
+const TECH_CATEGORIES = [
+  {
+    title: 'Frontend',
+    techs: ['Next.js', 'Solid.js', 'React', 'TypeScript'],
+  },
+  {
+    title: 'Backend',
+    techs: ['Node.js', 'Java Spring Boot', 'Python FastAPI'],
+  },
+  {
+    title: 'Database',
+    techs: ['PostgreSQL', 'MongoDB'],
+  },
+  {
+    title: 'DevOps / Infra',
+    techs: ['AWS', 'Docker', 'CI/CD'],
+  },
+  {
+    title: 'Payments',
+    techs: ['Stripe'],
+  },
+  {
+    title: 'AI / Data',
+    techs: ['LangChain', 'RAG', 'OpenAI'],
+  },
+];
+
+const cards: CardItem[] = [
+  {
+    id: 'canada',
+    title: 'Based in Canada',
+    description: 'Remote',
+    icon: MapPin,
+    iconColor: 'text-red-600',
+    content: () => {
+      return <Globe />;
+    },
+  },
+  {
+    id: 'tech-stack',
+    title: 'My Tech Stack',
+    description: 'Full Stack Dev',
+    icon: Layers,
+    iconColor: 'text-indigo-500',
+    content: () => {
+      return (
+        <div className="relative w-full h-full rounded-3xl bg-white dark:bg-black overflow-y-auto p-6 md:p-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="space-y-2 pb-4 border-b border-neutral-200 dark:border-neutral-800">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
+              My Tech Stack
+            </h2>
+            <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              I build scalable, production-ready applications with modern technologies.
+            </p>
+          </motion.div>
+
+          <div className="pt-4 space-y-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.35, delay: 0.2, ease: 'easeOut' }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              {TECH_CATEGORIES.map((category) => (
+                <div
+                  key={category.title}
+                  className="rounded-xl border border-neutral-200 dark:border-neutral-800 p-4 bg-white dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+                  <h3 className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-4">{category.title}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {category.techs.map((tech) => (
+                      <Badge key={tech} title={tech} fillClassName="bg-neutral-200/60 dark:bg-indigo-500" />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div className="pt-4 border-t border-neutral-200 dark:border-neutral-800">
+              <h3 className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-4">How I Work</h3>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  'System thinking',
+                  'Performance & scalability focus',
+                  'Clear communication',
+                  'Ownership & execution',
+                  'Continuous learning',
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="px-3 py-1.5 text-xs rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      );
+    },
+  },
+];
 
 export default function Home() {
   return (
@@ -29,40 +135,9 @@ export default function Home() {
           </p>
         </section>
 
-        <ExpandableCardDemo />
-
         {/* ── EXPANDABLE CARDS ────────────────────────────────────── */}
-        <section className="mt-48 mb-20 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Based in Calgary */}
-          <ExpandableCard title="Based in Calgary" icon={<MapPin className="h-4 w-4" />}>
-            <dl className="space-y-2.5 text-sm">
-              <div className="flex justify-between">
-                <dt className="text-neutral-500 dark:text-neutral-400">Location</dt>
-                <dd className="font-medium text-neutral-900 dark:text-neutral-100">Calgary, AB, Canada</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-neutral-500 dark:text-neutral-400">Timezone</dt>
-                <dd className="font-medium text-neutral-900 dark:text-neutral-100">MST (UTC−7)</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-neutral-500 dark:text-neutral-400">Availability</dt>
-                <dd className="font-medium text-emerald-600 dark:text-emerald-400">Open to work</dd>
-              </div>
-            </dl>
-          </ExpandableCard>
-
-          {/* Tech Stack */}
-          <ExpandableCard title="Tech Stack" icon={<Layers className="h-4 w-4" />}>
-            <div className="flex flex-wrap gap-2">
-              {TECH_STACK.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-medium text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </ExpandableCard>
+        <section className="mt-48 mb-20 gap-4">
+          <ExpandableCard cards={cards} />
         </section>
 
         {/* ── B) SELECTED WORK ────────────────────────────────────── */}

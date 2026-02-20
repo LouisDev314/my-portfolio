@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'motion/react';
+import { cn } from '@/lib/utils';
 
-export default function Badge({ title }: { title: string }) {
+export default function Badge({ title, fillClassName }: { title: string; fillClassName?: string }) {
   return (
     <motion.span
       initial={{ opacity: 0, y: 8 }}
@@ -30,7 +31,7 @@ export default function Badge({ title }: { title: string }) {
           },
         }}
         initial={{ scaleY: 0 }}
-        className="absolute inset-0 origin-bottom bg-neutral-200 dark:bg-indigo-500"
+        className={cn("absolute inset-0 origin-bottom bg-neutral-200 dark:bg-indigo-500", fillClassName)}
         style={{ zIndex: 0 }}
       />
 
