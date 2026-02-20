@@ -12,31 +12,86 @@ import { motion } from 'motion/react';
 import Badge from '@/components/Badge';
 import { Globe } from '@/components/Globe';
 import { ImagesBadge } from '@/components/ui/images-badge';
+import TSIcon from '@/assets/icons/ts-icon';
+import NextIcon from '@/assets/icons/next-icon';
+import SolidIcon from '@/assets/icons/solid-icon';
+import ReactIcon from '@/assets/icons/react-icon';
+import NodeIcon from '@/assets/icons/node-icon';
+import SpringBootIcon from '@/assets/icons/spring-boot-icon';
+import FastAPIIcon from '@/assets/icons/fastapi-icon';
+import PostgreSQLIcon from '@/assets/icons/postgresql-icon';
+import MongoIcon from '@/assets/icons/mongo-icon';
+import RedisIcon from '@/assets/icons/redis-icon';
+import RenderIcon from '@/assets/icons/render-icon';
+import DockerIcon from '@/assets/icons/docker-icon';
+import GitHubActionsIcon from '@/assets/icons/github-actions-icon';
+import GitLabIcon from '@/assets/icons/gitlab-icon';
+import StripeIcon from '@/assets/icons/stripe-icon';
+import LangChainIcon from '@/assets/icons/langchain-icon';
+import ExpoIcon from '@/assets/icons/expo-icon';
+import GitIcon from '@/assets/icons/git-icon';
+import ZodIcon from '@/assets/icons/zod-icon';
+import TanStackIcon from '@/assets/icons/tanstack-icon';
+import TailwindIcon from '@/assets/icons/tailwind-icon';
+import PrismaIcon from '@/assets/icons/prisma-icon';
+import UnrealIcon from '@/assets/icons/unreal-icon';
+import UnityIcon from '@/assets/icons/unity-icon';
 
 const TECH_CATEGORIES = [
   {
     title: 'Frontend',
-    techs: ['Next.js', 'Solid.js', 'React', 'TypeScript'],
+    techs: [
+      { title: 'Next.js', icon: <NextIcon className="size-4 fill-black dark:fill-white" /> },
+      { title: 'Solid.js', icon: <SolidIcon className="size-4 fill-[#2C4F7C]" /> },
+      { title: 'React', icon: <ReactIcon className="size-4 fill-[#61DAFB]" /> },
+      { title: 'Tailwind CSS', icon: <TailwindIcon className="size-4 fill-[#06B6D4]" /> },
+      { title: 'Expo', icon: <ExpoIcon className="size-4 fill-[#1C2024] dark:fill-white" /> },
+      { title: 'TanStack', icon: <TanStackIcon className="size-4 fill-black dark:fill-white" /> },
+      { title: 'Typescript', icon: <TSIcon className="size-4 fill-[#3178C6]" /> },
+    ],
   },
   {
     title: 'Backend',
-    techs: ['Node.js', 'Java Spring Boot', 'Python FastAPI'],
+    techs: [
+      { title: 'Node.js', icon: <NodeIcon className="size-4 fill-[#5FA04E]" /> },
+      { title: 'Zod', icon: <ZodIcon className="size-4 fill-[#408AFF]" /> },
+      { title: 'Prisma', icon: <PrismaIcon className="size-4 fill-[#2D3748] dark:fill-white" /> },
+      { title: 'Java Spring Boot', icon: <SpringBootIcon className="size-4 fill-[#6DB33F]" /> },
+      { title: 'Python FastAPI', icon: <FastAPIIcon className="size-4 fill-[#009688]" /> },
+    ],
   },
   {
     title: 'Database',
-    techs: ['PostgreSQL', 'MongoDB'],
+    techs: [
+      { title: 'PostgreSQL', icon: <PostgreSQLIcon className="size-4 fill-[#4169E1]" /> },
+      { title: 'MongoDB', icon: <MongoIcon className="size-4 fill-[#47A248]" /> },
+      { title: 'Redis', icon: <RedisIcon className="size-4 fill-[#FF4438]" /> },
+    ],
   },
   {
     title: 'DevOps / Infra',
-    techs: ['AWS', 'Docker', 'CI/CD'],
+    techs: [
+      { title: 'Render', icon: <RenderIcon className="size-4 fill-black dark:fill-white" /> },
+      { title: 'Solid.js', icon: <DockerIcon className="size-4 fill-[#2496ED]" /> },
+      { title: 'Git', icon: <GitIcon className="size-4 fill-[#F05032]" /> },
+      { title: 'GitHub Actions', icon: <GitHubActionsIcon className="size-4 fill-[#2088FF]" /> },
+      { title: 'GitLab', icon: <GitLabIcon className="size-4 fill-[#FC6D26]" /> },
+    ],
   },
   {
     title: 'Payments',
-    techs: ['Stripe'],
+    techs: [{ title: 'Stripe', icon: <StripeIcon className="size-4 fill-[#635BFF]" /> }],
   },
   {
     title: 'AI / Data',
-    techs: ['LangChain', 'RAG', 'OpenAI'],
+    techs: [{ title: 'LangChain', icon: <LangChainIcon className="size-4 fill-[#1C3C3C]" /> }],
+  },
+  {
+    title: 'Game Engines',
+    techs: [
+      { title: 'Unreal', icon: <UnrealIcon className="size-4 fill-[#0E1128] dark:fill-white" /> },
+      { title: 'Unity', icon: <UnityIcon className="size-4 fill-black dark:fill-white" /> },
+    ],
   },
 ];
 
@@ -78,7 +133,7 @@ const cards: CardItem[] = [
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.35, delay: 0.2, ease: 'easeOut' }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4">
               {TECH_CATEGORIES.map((category) => (
                 <div
                   key={category.title}
@@ -86,7 +141,12 @@ const cards: CardItem[] = [
                   <h3 className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-4">{category.title}</h3>
                   <div className="flex flex-wrap gap-2">
                     {category.techs.map((tech) => (
-                      <Badge key={tech} title={tech} fillClassName="bg-neutral-200/60 dark:bg-indigo-500" />
+                      <Badge
+                        key={tech.title}
+                        title={tech.title}
+                        icon={tech.icon}
+                        fillClassName="bg-neutral-200/60 dark:bg-indigo-500/20"
+                      />
                     ))}
                   </div>
                 </div>

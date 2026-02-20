@@ -2,13 +2,16 @@
 
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { JSX } from 'react';
 
 export default function Badge({
   title,
+  icon,
   fillClassName,
   hasAnim = true,
 }: {
   title: string;
+  icon?: JSX.Element;
   fillClassName?: string;
   hasAnim?: boolean;
 }) {
@@ -51,9 +54,12 @@ export default function Badge({
       />
 
       {/* Content */}
-      <span className="relative z-10 transition-colors duration-200 group-hover:text-neutral-900 dark:group-hover:text-neutral-100">
-        {title}
-      </span>
+      <div className="flex justify-center items-center">
+        {icon ?? <></>}
+        <span className="ml-1.5 relative z-10 transition-colors duration-200 group-hover:text-neutral-900 dark:group-hover:text-neutral-100">
+          {title}
+        </span>
+      </div>
     </motion.span>
   );
 }

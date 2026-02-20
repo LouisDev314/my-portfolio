@@ -18,7 +18,7 @@ export default function ContactCard() {
     try {
       await navigator.clipboard.writeText(EMAIL);
       setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
+      setTimeout(() => setCopied(false), 2000);
     } catch {
       // fallback: do nothing
     }
