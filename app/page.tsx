@@ -114,7 +114,7 @@ const cards: CardItem[] = [
     iconColor: 'text-indigo-500',
     content: () => {
       return (
-        <div className="relative w-full h-full rounded-3xl bg-white dark:bg-black overflow-y-auto p-6 md:p-8">
+        <div className="no-scrollbar relative w-full h-full rounded-3xl bg-white border border-amber-400 dark:bg-black overflow-y-auto p-6 md:p-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

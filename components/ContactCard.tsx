@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Copy, Check, Globe, Linkedin, Github } from 'lucide-react';
 
-const EMAIL = 'louis@example.com';
+const EMAIL = 'louiscch314@gmail.com';
 
 const SOCIALS = [
   { icon: Globe, href: 'https://louischan.dev', label: 'Website' },
@@ -18,7 +18,7 @@ export default function ContactCard() {
     try {
       await navigator.clipboard.writeText(EMAIL);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), 1200);
     } catch {
       // fallback: do nothing
     }

@@ -94,7 +94,7 @@ export function Globe() {
   const colors = ['#06b6d4', '#3b82f6', '#6366f1'];
 
   return (
-    <div className="relative w-full h-full rounded-3xl bg-white dark:bg-black overflow-hidden">
+    <div className="no-scrollbar relative w-full h-full rounded-3xl bg-white border border-amber-400 dark:bg-black overflow-hidden">
       {/* subtle frame glow */}
       <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-black/5 dark:ring-white/10" />
 
