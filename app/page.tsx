@@ -11,6 +11,7 @@ import { MapPin, Layers } from 'lucide-react';
 import { motion } from 'motion/react';
 import Badge from '@/components/Badge';
 import { Globe } from '@/components/Globe';
+import { ImagesBadge } from '@/components/ui/images-badge';
 
 const TECH_CATEGORIES = [
   {
@@ -144,10 +145,21 @@ export default function Home() {
         <section className="mb-20">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">Selected Work</h2>
-            <Link
-              href="/projects"
-              className="text-base text-neutral-500 hover:text-neutral-900 hover:underline dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors self-end">
-              View all →
+            <Link href="/projects" className="self-end">
+              <ImagesBadge
+                text="View all →"
+                className="hover:underline"
+                images={[
+                  'https://assets.aceternity.com/pro/agenforce-1.webp',
+                  'https://assets.aceternity.com/pro/agenforce-2.webp',
+                  'https://assets.aceternity.com/pro/agenforce-3.webp',
+                ]}
+                folderSize={{ width: 24, height: 18 }}
+                teaserImageSize={{ width: 14, height: 10 }}
+                hoverImageSize={{ width: 36, height: 24 }}
+                hoverTranslateY={-28}
+                hoverSpread={14}
+              />
             </Link>
           </div>
 
