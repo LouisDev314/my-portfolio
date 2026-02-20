@@ -1,9 +1,43 @@
+'use client';
+
+import { motion } from 'motion/react';
+
 export default function Badge({ title }: { title: string }) {
   return (
-    <span
-      key={title}
-      className="rounded-full border border-neutral-200 bg-neutral-50 px-2.5 py-0.5 text-xs text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400">
-      {title}
-    </span>
+    <motion.span
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover="hover"
+      whileTap={{ scale: 0.96 }}
+      variants={{
+        hover: {
+          y: -3, // lift upward
+          transition: {
+            y: { delay: 0.15, type: 'spring', stiffness: 300, damping: 20 },
+          },
+        },
+      }}
+      className="relative overflow-hidden inline-flex cursor-default rounded-full px-3 py-1 text-sm border
+      bg-neutral-100 border-neutral-200 text-neutral-700
+      dark:bg-neutral-900/80 dark:border-neutral-700 dark:text-neutral-300
+      shadow-sm">
+      {/* Fill Layer */}
+      <motion.span
+        variants={{
+          hover: {
+            scaleY: 1,
+            transition: { duration: 0.25, ease: 'easeOut' },
+          },
+        }}
+        initial={{ scaleY: 0 }}
+        className="absolute inset-0 origin-bottom bg-neutral-200 dark:bg-indigo-500"
+        style={{ zIndex: 0 }}
+      />
+
+      {/* Content */}
+      <span className="relative z-10 transition-colors duration-200 group-hover:text-neutral-900 dark:group-hover:text-neutral-100">
+        {title}
+      </span>
+    </motion.span>
   );
 }
