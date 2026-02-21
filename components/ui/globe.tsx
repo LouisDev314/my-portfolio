@@ -238,11 +238,35 @@ export function WebGLRendererConfig() {
 
 export function World(props: WorldProps) {
   const { globeConfig } = props;
+
+  const controlsRef = useRef<any>(null);
+
   const scene = useMemo(() => {
     const s = new Scene();
     s.fog = new Fog(0xffffff, 400, 2000);
     return s;
   }, []);
+
+  useEffect(() => {
+    if (!controlsRef.current) return;
+
+    // ~45° from top (top-down-ish). Smaller = more top-down.
+    const polar = Math.PI / 4; // 45 degrees
+    // rotate around the globe a bit so it isn't perfectly symmetric
+    const azimuth = -Math.PI / 4;
+
+    controlsRef.current.setPolarAngle(polar);
+    controlsRef.current.setAzimuthalAngle(azimuth);
+    controlsRef.current.update();
+  }, []);
+
+  const INITIAL_POLAR = Math.PI / 4; // 45°
+  const INITIAL_AZIMUTH = -Math.PI / 6; // -30° (nice angle)
+  const r = cameraZ;
+
+  const x = r * Math.sin(INITIAL_POLAR) * Math.sin(INITIAL_AZIMUTH);
+  const y = r * Math.cos(INITIAL_POLAR);
+  const z = r * Math.sin(INITIAL_POLAR) * Math.cos(INITIAL_AZIMUTH);
   return (
     <Canvas
       scene={scene}
@@ -250,7 +274,7 @@ export function World(props: WorldProps) {
         fov: 50,
         near: 180,
         far: 1800,
-        position: [0, 0, cameraZ], // IMPORTANT: stable camera position
+        position: [x, y, z], // ✅ starts tilted
       }}>
       <WebGLRendererConfig />
       <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
@@ -259,13 +283,15 @@ export function World(props: WorldProps) {
       <pointLight color={globeConfig.pointLight} position={new Vector3(-200, 500, 200)} intensity={0.8} />
       <Globe {...props} />
       <OrbitControls
+        ref={controlsRef}
         enablePan={false}
         enableZoom={false}
         minDistance={cameraZ}
         maxDistance={cameraZ}
         autoRotateSpeed={1}
         autoRotate={true}
-        minPolarAngle={Math.PI / 3.5}
+        // minPolarAngle={Math.PI / 3.5}
+        minPolarAngle={Math.PI / 6} // 30°
         maxPolarAngle={Math.PI - Math.PI / 3}
       />
     </Canvas>
