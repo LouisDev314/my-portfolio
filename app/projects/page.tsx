@@ -16,7 +16,7 @@ export default function ProjectsPage() {
           <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-3">
             Selected Work
           </h1>
-          <p className="text-neutral-500 dark:text-neutral-400 max-w-xl">A selection of projects I&apos;ve built.</p>
+          <p className="text-neutral-500 dark:text-neutral-400 max-w-xl">Crafting modern experience.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
