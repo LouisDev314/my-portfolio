@@ -1,4 +1,3 @@
-import NavbarDrawer from '@/components/NavbarDrawer';
 import ProjectCard from '@/components/ProjectCard';
 import Footer from '@/components/Footer';
 import { projects } from '@/lib/projects';
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <NavbarDrawer />
-
       <main className="mx-auto max-w-4xl px-6 pt-28">
         <div className="mb-6">
           <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-3">

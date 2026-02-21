@@ -1,4 +1,3 @@
-import NavbarDrawer from '@/components/NavbarDrawer';
 import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
 
@@ -10,8 +9,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <NavbarDrawer />
-
       <main className="mx-auto max-w-4xl px-6 pt-28 pb-16">
         <section className="mb-12">
           <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">About Me</h1>

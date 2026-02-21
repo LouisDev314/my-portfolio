@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
+import { ThemeRippleProvider } from '@/components/ThemeRippleProvider';
+import NavbarDrawer from '@/components/NavbarDrawer';
+import SmoothScroll from '@/components/SmoothScroll';
 import './globals.css';
 
 const geistSans = Geist({
@@ -34,8 +37,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <SmoothScroll />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          <ThemeRippleProvider>
+            <NavbarDrawer />
+            {children}
+          </ThemeRippleProvider>
         </ThemeProvider>
       </body>
     </html>

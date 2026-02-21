@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import { useThemeRipple } from '@/components/ThemeRippleProvider';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Sun, Moon, Command, Home, ExternalLink, User, Code, Newspaper } from 'lucide-react';
+import { Sun, Moon, Home, ExternalLink, User, Code, Newspaper } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
@@ -21,7 +22,8 @@ const NAV_SECTIONS = [
 ];
 
 function ThemeToggleButton() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const { toggleThemeWithRipple } = useThemeRipple();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ function ThemeToggleButton() {
 
   return (
     <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={toggleThemeWithRipple}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       className="flex size-8 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100 transition-colors">
       {isDark ? <Sun className="size-5 text-amber-400" /> : <Moon className="size-5" />}
@@ -48,6 +50,7 @@ function ThemeToggleButton() {
 export default function NavbarDrawer() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
   // Close on outside click
@@ -72,7 +75,7 @@ export default function NavbarDrawer() {
 
   return (
     <div
-      className={cn('fixed justify-center top-4 left-1/2 -translate-x-1/2 z-50 w-1/3', open ? 'w-full' : 'w-57')}
+      className={cn('fixed justify-center top-4 left-1/2 -translate-x-1/2 z-9999 w-1/3', open ? 'w-full' : 'w-57')}
       ref={ref}>
       <motion.div
         layout
@@ -121,11 +124,22 @@ export default function NavbarDrawer() {
                     {section.items.map((item) => {
                       const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
                       const Icon = item.icon;
+
+                      const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        if (pathname === item.href) {
+                          setOpen(false);
+                          return;
+                        }
+                        setOpen(false);
+                        router.push(item.href); // Immediately map routing
+                      };
+
                       return (
                         <Link
                           key={item.href}
                           href={item.href}
-                          onClick={() => setOpen(false)}
+                          onClick={handleNavClick}
                           className={cn(
                             'flex items-center gap-3 rounded-xl h-12 mb-1 px-4 py-2 text-sm transition-colors',
                             isActive
