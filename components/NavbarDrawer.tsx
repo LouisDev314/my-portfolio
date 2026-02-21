@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Sun, Moon, Command, Home, ExternalLink, User, Code, Newspaper } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const NAV_SECTIONS = [
   {
@@ -15,13 +16,6 @@ const NAV_SECTIONS = [
       { name: 'About', href: '/about', icon: User },
       { name: 'Selected Work', href: '/projects', icon: Code },
       { name: 'Blogs', href: '/blogs', icon: Newspaper },
-    ],
-  },
-  {
-    items: [
-      { name: 'Links', href: '/links', icon: Code },
-      { name: 'Uses', href: '/uses', icon: User },
-      { name: 'Guestbook', href: '/guestbook', icon: User },
     ],
   },
 ];
@@ -97,9 +91,8 @@ export default function NavbarDrawer() {
           aria-expanded={open}
           aria-label="Toggle navigation menu">
           <div className="flex gap-3 justify-between items-center w-full">
-            {/* TODO: Logo */}
-            <div className="w-8 h-8 rounded-full bg-neutral-900 dark:bg-white flex items-center justify-center">
-              <span className="text-[10px] font-bold text-white dark:text-neutral-900">L</span>
+            <div className="size-8">
+              <Image src="/portfolio-logo.webp" alt="My PNG image" width={500} height={300} className="rounded-full" />
             </div>
 
             <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>

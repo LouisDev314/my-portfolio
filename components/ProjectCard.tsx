@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Project } from '@/lib/projects';
 import Badge from 'components/Badge';

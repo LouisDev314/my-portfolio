@@ -5,7 +5,7 @@ import { projects } from '@/lib/projects';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Work',
+  title: 'Selected Work',
   description: 'Projects and work by Louis Chan.',
 };
 
@@ -14,12 +14,12 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
       <NavbarDrawer />
 
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-16">
-        <div className="mb-10">
-          <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-3">Work</h1>
-          <p className="text-neutral-500 dark:text-neutral-400 max-w-xl">
-            A selection of projects I&apos;ve built — from full-stack applications to open-source tools.
-          </p>
+      <main className="mx-auto max-w-4xl px-6 pt-28">
+        <div className="mb-6">
+          <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-3">
+            Selected Work
+          </h1>
+          <p className="text-neutral-500 dark:text-neutral-400 max-w-xl">A selection of projects I&apos;ve built.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

@@ -57,7 +57,7 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
             <motion.div
               layoutId={`card-${active.title}-${active.id || baseId}`}
               ref={ref as React.RefObject<HTMLDivElement>}
-              className="w-full max-w-[500px] h-3/4 bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden z-10">
+              className="w-9/10 h-3/4 bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden z-10">
               <motion.div
                 layout
                 initial={{ opacity: 0 }}
@@ -79,12 +79,12 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
               layoutId={`card-${card.title}-${cardId}`}
               key={`card-${card.title}-${cardId}`}
               onClick={() => setActive(card)}
-              className="p-4 size-38 flex flex-col md:flex-row justify-center items-center dark:hover:bg-neutral-800 rounded-3xl cursor-pointer relative z-0">
-              <div className="flex gap-4 flex-col md:flex-row items-center">
+              className="p-4 size-38 flex flex-col justify-center items-center hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-3xl cursor-pointer relative z-0">
+              <div className="flex gap-4 flex-col items-center justify-center">
                 <motion.div layoutId={`image-${card.title}-${cardId}`} className="flex justify-center">
                   <Icon className={cn('size-6', card.iconColor)} />
                 </motion.div>
-                <div>
+                <div className="flex flex-col justify-center items-center">
                   <motion.h3
                     layoutId={`title-${card.title}-${cardId}`}
                     className="text-sm font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left">

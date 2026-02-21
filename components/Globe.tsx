@@ -91,7 +91,6 @@ export function Globe() {
     autoRotate: true,
     autoRotateSpeed: 0.35,
   };
-  const colors = ['#06b6d4', '#3b82f6', '#6366f1'];
 
   return (
     <div className="no-scrollbar relative w-full h-full rounded-3xl bg-white border border-amber-400 dark:bg-black overflow-hidden">
