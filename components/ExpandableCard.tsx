@@ -47,23 +47,35 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
     <>
       <AnimatePresence>
         {active && typeof active === 'object' ? (
-          <div className="fixed inset-0 grid place-items-center z-[100]">
+          <div className="fixed inset-0 z-[100] grid place-items-center overflow-hidden">
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="absolute inset-0 bg-black/5 dark:bg-black/20"
+              // prevents wheel/touch from reaching the page behind
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
             />
+
+            {/* Modal */}
             <motion.div
               layoutId={`card-${active.title}-${active.id || baseId}`}
               ref={ref as React.RefObject<HTMLDivElement>}
-              className="w-9/10 h-3/4 bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden z-10">
+              className="w-9/10 h-3/4 bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden z-10"
+              // trap scroll so it doesn't chain to body
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}>
+              {/* Scrollable content region */}
               <motion.div
                 layout
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="py-4 px-4 h-full">
+                className="h-full min-h-0 px-4 py-4 overflow-y-auto overscroll-contain touch-pan-y"
+                // extra safety: prevent scroll chaining on desktop trackpads
+                onWheel={(e) => e.stopPropagation()}>
                 {typeof active.content === 'function' ? active.content() : active.content}
               </motion.div>
             </motion.div>

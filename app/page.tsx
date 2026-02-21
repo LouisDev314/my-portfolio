@@ -56,15 +56,13 @@ export default function Home() {
               hidden: {},
               show: { transition: { staggerChildren: 0.14, delayChildren: 0.15 } },
             }}
-            className="flex flex-col items-center text-center"
-          >
+            className="flex flex-col items-center text-center">
             <motion.p
               variants={{
                 hidden: { opacity: 0, y: 8 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
               }}
-              className={`text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed ${fraunces.className}`}
-            >
+              className={`text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed ${fraunces.className}`}>
               Technology as a bridge
             </motion.p>
             <br />
@@ -73,8 +71,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 8 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
               }}
-              className={`text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed ${fraunces.className}`}
-            >
+              className={`text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed ${fraunces.className}`}>
               Connect. Build. Impact.
             </motion.p>
           </motion.div>
@@ -90,8 +87,10 @@ export default function Home() {
         {/* ── B) SELECTED WORK ────────────────────────────────────── */}
         <RevealOnScroll>
           <section className="mb-20">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">Selected Work</h2>
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+                Selected Work
+              </h2>
               <Link href="/projects" className="self-end">
                 <ImagesBadge
                   text="View all →"
@@ -120,7 +119,9 @@ export default function Home() {
 
         {/* ── C) About Me ─────────────────────────────────────── */}
         <RevealOnScroll>
-          <h2 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">About Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-5">
+            About Me
+          </h2>
           <section className="mb-16">
             <ContactCard />
           </section>
