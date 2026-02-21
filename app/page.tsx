@@ -14,6 +14,7 @@ import RevealOnScroll from '@/components/RevealOnScroll';
 import { Fraunces } from 'next/font/google';
 import { motion } from 'motion/react';
 
+// TODO: switch font
 const fraunces = Fraunces({ subsets: ['latin'], weight: ['500', '700'] });
 
 const cards: CardItem[] = [
@@ -79,14 +80,14 @@ export default function Home() {
 
         {/* ── EXPANDABLE CARDS ────────────────────────────────────── */}
         <RevealOnScroll>
-          <section className="mt-48 mb-20 gap-4">
+          <section className="mt-48 mb-10 gap-4">
             <ExpandableCard cards={cards} />
           </section>
         </RevealOnScroll>
 
         {/* ── B) SELECTED WORK ────────────────────────────────────── */}
         <RevealOnScroll>
-          <section className="mb-20">
+          <section className="mb-16">
             <div className="flex items-center justify-between mb-5">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
                 Selected Work

@@ -121,14 +121,15 @@ export function Globe() {
         </motion.div>
 
         {/* Globe stage (fills remaining space) */}
-        <div className="relative flex-1 min-h-0">
+        <div className="relative flex-1 min-h-[360px] md:min-h-[420px]">
           {/* bottom fade so arcs don't look cut off */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent dark:from-black z-20" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent dark:from-black z-20" />
 
           <div className="absolute inset-0 z-10">
-            {/* gentle push down without breaking layout */}
-            <div className="h-full w-full translate-y-6">
-              <World data={sampleArcs} globeConfig={globeConfig} />
+            <div className="h-full w-full flex items-center justify-center">
+              <div className="h-full w-full max-w-[720px]">
+                <World data={sampleArcs} globeConfig={globeConfig} />
+              </div>
             </div>
           </div>
         </div>

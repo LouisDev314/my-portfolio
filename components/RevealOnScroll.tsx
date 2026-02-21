@@ -36,24 +36,21 @@ export default function RevealOnScroll({ children, className = '', threshold = 0
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.10) {
           controls.start('visible');
-        } else {
-          // Fade out only if it's truly out of view
-          if (entry.intersectionRatio <= 0.01) {
-            controls.start('hidden');
-          }
+        } else if (!entry.isIntersecting || entry.intersectionRatio < 0.06) {
+          controls.start('hidden');
         }
       },
       {
-        threshold,
-        rootMargin: "15% 0px -5% 0px"
+        threshold: [0, 0.06, 0.10],
+        rootMargin: "12% 0px -12% 0px"
       }
     );
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [controls, prefersReducedMotion, threshold]);
+  }, [controls, prefersReducedMotion]);
 
   if (prefersReducedMotion) {
     return <div className={className}>{children}</div>;
