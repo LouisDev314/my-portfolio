@@ -112,8 +112,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               onPointerDown={stopCardNav}
               onPointerUp={stopCardNav}
               onClick={stopCardNav}
-              className="flex items-center gap-1 text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors">
-              Demo <YoutubeIcon className="size-5.5 fill-[#FF0000] ml-0.5" />
+              className="flex items-center gap-1">
+              <p className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-350 dark:hover:text-neutral-50 transition-colors">
+                Demo
+              </p>
+              <YoutubeIcon className="size-5.5 fill-[#FF0000] ml-0.5" />
             </a>
           )}
 

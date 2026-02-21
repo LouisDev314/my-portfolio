@@ -13,6 +13,9 @@ import TechStack from '@/components/TechStack';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import { Fraunces } from 'next/font/google';
 import { motion } from 'motion/react';
+import { FlipWords } from '@/components/ui/flip-words';
+import { cn } from '@/lib/utils';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 
 // TODO: switch font
 const fraunces = Fraunces({ subsets: ['latin'], weight: ['500', '700'] });
@@ -55,26 +58,32 @@ export default function Home() {
             animate="show"
             variants={{
               hidden: {},
-              show: { transition: { staggerChildren: 0.14, delayChildren: 0.15 } },
+              show: { transition: { delayChildren: 0.15 } },
             }}
             className="flex flex-col items-center text-center">
-            <motion.p
+            <motion.div
               variants={{
                 hidden: { opacity: 0, y: 8 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
               }}
-              className={`text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed ${fraunces.className}`}>
-              Technology as a bridge
-            </motion.p>
+              className={cn(
+                'text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed',
+                fraunces.className,
+              )}>
+              Technology as a<FlipWords words={['bridge', 'string', 'knot']} />
+            </motion.div>
             <br />
-            <motion.p
+            <motion.div
               variants={{
                 hidden: { opacity: 0, y: 8 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
               }}
-              className={`text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed ${fraunces.className}`}>
-              Connect. Build. Impact.
-            </motion.p>
+              className={cn(
+                'text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed',
+                fraunces.className,
+              )}>
+              <TextGenerateEffect words={'Connect. Build. Impact.'} />
+            </motion.div>
           </motion.div>
         </section>
 
