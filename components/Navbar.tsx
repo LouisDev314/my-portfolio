@@ -47,7 +47,7 @@ function ThemeToggleButton() {
   );
 }
 
-export default function NavbarDrawer() {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();

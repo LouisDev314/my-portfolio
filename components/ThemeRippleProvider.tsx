@@ -39,7 +39,7 @@ export function ThemeRippleProvider({ children }: { children: React.ReactNode })
       overlay.style.position = 'fixed';
       overlay.style.borderRadius = '50%';
       overlay.style.pointerEvents = 'none';
-      overlay.style.zIndex = '9998'; // Below NavbarDrawer which we'll update to 9999
+      overlay.style.zIndex = '9998'; // Below Navbar which we'll update to 9999
 
       // 3) Calculate parameters
       const startRadius = 12; // Start small from the center of the button
@@ -67,13 +67,13 @@ export function ThemeRippleProvider({ children }: { children: React.ReactNode })
       const animation = overlay.animate(
         [
           { transform: `translate(-50%, -50%) scale(1)`, opacity: 1 },
-          { transform: `translate(-50%, -50%) scale(${endScale})`, opacity: 1 }
+          { transform: `translate(-50%, -50%) scale(${endScale})`, opacity: 1 },
         ],
         {
           duration: 520,
           easing: 'cubic-bezier(0.2, 0, 0.2, 1)',
-          fill: 'forwards'
-        }
+          fill: 'forwards',
+        },
       );
 
       // apply theme early during the ripple
@@ -83,10 +83,7 @@ export function ThemeRippleProvider({ children }: { children: React.ReactNode })
 
       // 5) Remove overlay after animation
       animation.onfinish = () => {
-        const fadeOut = overlay.animate(
-          [{ opacity: 1 }, { opacity: 0 }],
-          { duration: 120, fill: 'forwards' }
-        );
+        const fadeOut = overlay.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, fill: 'forwards' });
         fadeOut.onfinish = () => {
           if (document.body.contains(overlay)) {
             document.body.removeChild(overlay);
@@ -94,20 +91,23 @@ export function ThemeRippleProvider({ children }: { children: React.ReactNode })
         };
       };
     },
-    [setTheme]
+    [setTheme],
   );
 
-  const toggleThemeWithRipple = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const nextTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
-    handleThemeChange(nextTheme, rect);
-  }, [resolvedTheme, handleThemeChange]);
+  const toggleThemeWithRipple = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const nextTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
+      handleThemeChange(nextTheme, rect);
+    },
+    [resolvedTheme, handleThemeChange],
+  );
 
   const setThemeWithRipple = useCallback(
     (theme: string, rect?: DOMRect) => {
       handleThemeChange(theme, rect);
     },
-    [handleThemeChange]
+    [handleThemeChange],
   );
 
   return (

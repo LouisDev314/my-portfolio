@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import { ThemeRippleProvider } from '@/components/ThemeRippleProvider';
-import NavbarDrawer from '@/components/NavbarDrawer';
+import Navbar from '@/components/Navbar';
 import SmoothScroll from '@/components/SmoothScroll';
 import './globals.css';
 
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SmoothScroll />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ThemeRippleProvider>
-            <NavbarDrawer />
+            <Navbar />
             {children}
           </ThemeRippleProvider>
         </ThemeProvider>
