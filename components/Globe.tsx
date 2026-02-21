@@ -120,14 +120,15 @@ export function Globe() {
           </div>
         </motion.div>
 
-        {/* Globe stage (fills remaining space) */}
-        <div className="relative flex-1 min-h-[360px] md:min-h-[420px]">
-          {/* bottom fade so arcs don't look cut off */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent dark:from-black z-20" />
+        {/* Globe stage (fits globe completely) */}
+        <div className="relative flex-1 min-h-0">
+          {/* bottom fade (smaller so it doesn't mask the globe) */}
+          <div className="pointer-events-none absolute md:-mb-6 inset-x-0 bottom-0 h-14 dark:h-16 bg-gradient-to-t from-white to-transparent dark:from-black z-20" />
 
-          <div className="absolute inset-0 z-10">
-            <div className="h-full w-full flex items-center justify-center">
-              <div className="h-full w-full max-w-[720px]">
+          <div className="absolute inset-0 z-10 flex items-center justify-center">
+            {/* Make a square stage so the globe can fit */}
+            <div className="aspect-square w-full sm:w-4/5 md:w-128 sm:translate-y-8">
+              <div className="h-full w-full origin-center">
                 <World data={sampleArcs} globeConfig={globeConfig} />
               </div>
             </div>
