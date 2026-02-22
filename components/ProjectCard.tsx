@@ -4,7 +4,7 @@ import React from 'react';
 import { Project } from '@/lib/projects';
 import Badge from 'components/Badge';
 import { motion } from 'motion/react';
-import GithubIcon from '@/assets/icons/github-icon';
+import GitHubIcon from '@/assets/icons/github-icon';
 import YoutubeIcon from '@/assets/icons/youtube-icon';
 
 interface ProjectCardProps {
@@ -112,8 +112,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               onPointerDown={stopCardNav}
               onPointerUp={stopCardNav}
               onClick={stopCardNav}
-              className="flex items-center gap-1">
-              <p className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-350 dark:hover:text-neutral-50 transition-colors">
+              className="flex items-center gap-1 hover:underline">
+              <p className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-50 transition-colors">
                 Demo
               </p>
               <YoutubeIcon className="size-5.5 fill-[#FF0000] ml-0.5" />
@@ -128,8 +128,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               onPointerDown={stopCardNav}
               onPointerUp={stopCardNav}
               onClick={stopCardNav}
-              className="ml-auto flex items-center gap-1 text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors">
-              <GithubIcon className="size-5 dark:fill-white mr-0.5" />
+              className="ml-auto flex hover:underline items-center gap-1 text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-50 transition-colors">
+              <GitHubIcon className="size-5 dark:fill-white mr-0.5" />
               Code
             </a>
           )}

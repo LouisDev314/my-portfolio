@@ -16,6 +16,7 @@ import { motion } from 'motion/react';
 import { FlipWords } from '@/components/ui/flip-words';
 import { cn } from '@/lib/utils';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+import { DraggableCard } from '@/components/DraggableCard';
 
 // TODO: switch font
 const fraunces = Fraunces({ subsets: ['latin'], weight: ['500', '700'] });
@@ -33,8 +34,8 @@ const cards: CardItem[] = [
   },
   {
     id: 'tech-stack',
-    title: 'My Tech Stack',
-    description: 'Full Stack Dev',
+    title: 'Tech Stack',
+    description: 'Skillset',
     icon: Layers,
     iconColor: 'text-indigo-500',
     content: () => {
@@ -46,7 +47,7 @@ const cards: CardItem[] = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-16">
+      <main className="mx-auto max-w-4xl px-6 pt-28">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
         <section className="mt-36 mb-16 flex flex-col items-center text-center">
           <h1 className="text-[clamp(5.2rem,14vw,10.5rem)] font-black tracking-[-0.06em] leading-[0.85] wrap-break-word text-neutral-900 dark:text-neutral-100 mb-6">
@@ -133,7 +134,7 @@ export default function Home() {
             About Me
           </h2>
           <section className="mb-16">
-            <ContactCard />
+            <DraggableCard />
           </section>
         </RevealOnScroll>
       </main>
