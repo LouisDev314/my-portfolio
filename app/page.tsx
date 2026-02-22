@@ -130,7 +130,7 @@ export default function Home() {
 
         {/* ── C) About Me ─────────────────────────────────────── */}
         <RevealOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-5">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-20">
             About Me
           </h2>
           <section className="mb-16">

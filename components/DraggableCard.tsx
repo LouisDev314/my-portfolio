@@ -14,22 +14,22 @@ export function DraggableCard() {
     {
       title: 'Working Across\nTime Zones',
       image: '/timezones.webp',
-      className: 'absolute top-58 right-[25%] rotate-[-10deg]',
+      className: 'absolute top-40 right-[35%] rotate-[-12deg]',
     },
     {
       title: 'RAG · Agents · Automation',
       image: '/AI.webp',
-      className: 'absolute top-15 right-[20%] rotate-[-5deg]',
+      className: 'absolute top-15 right-[10%] rotate-[12deg]',
     },
     {
       title: 'Full Stack Developer',
       image: '/Microsoft_Atlanta.webp',
-      className: 'absolute top-24 right-[25%] rotate-[-7deg]',
+      className: 'absolute top-24 right-[25%] rotate-[-8deg]',
     },
     {
       title: 'Graduated from\nGeorgia Tech',
       image: '/GT.webp',
-      className: 'absolute top-8 left-[30%] rotate-[4deg] sm:left-[50%]',
+      className: 'absolute top-25 left-[30%] rotate-[4deg] sm:left-[50%]',
     },
   ];
   return (

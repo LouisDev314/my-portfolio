@@ -4,13 +4,15 @@ import RegularCard from '@/components/RegularCard';
 import CopyBtn from '@/components/CopyBtn';
 import GitHubIcon from '@/assets/icons/github-icon';
 import WhatsAppIcon from '@/assets/icons/whatsapp-icon';
-import { IconBrandLinkedin } from '@tabler/icons-react';
 import TelegramIcon from '@/assets/icons/telegram-icon';
 import WeChatIcon from '@/assets/icons/wechat-icon';
+import { useState } from 'react';
 
 const EMAIL = 'louiscch314@gmail.com';
 
 export default function ContactCard() {
+  const [open, setOpen] = useState(false);
+
   const SOCIALS = [
     {
       icon: <img src="/linkedin-icon.svg" alt="My Logo" className="size-5" />,
@@ -28,8 +30,9 @@ export default function ContactCard() {
       href: 'https://t.me/louisdev314',
       label: 'Telegram',
     },
-    { icon: <WeChatIcon className="fill-[#07C160] size-5" />, href: 'https://wa.me/13682998117', label: 'WeChat' },
   ];
+
+  const wechatModal = <></>;
 
   const content = (
     <>
@@ -59,6 +62,7 @@ export default function ContactCard() {
             {icon}
           </a>
         ))}
+        {wechatModal}
       </div>
     </>
   );
