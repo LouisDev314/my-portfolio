@@ -7,6 +7,8 @@ import WhatsAppIcon from '@/assets/icons/whatsapp-icon';
 import TelegramIcon from '@/assets/icons/telegram-icon';
 import WeChatIcon from '@/assets/icons/wechat-icon';
 import { useState } from 'react';
+import { Modal } from '@/components/Modal';
+import Image from 'next/image';
 
 const EMAIL = 'louiscch314@gmail.com';
 
@@ -32,7 +34,23 @@ export default function ContactCard() {
     },
   ];
 
-  const wechatModal = <></>;
+  const wechatModal = (
+    <>
+      {/* Trigger */}
+      <button
+        onClick={() => setOpen(true)}
+        className="flex h-9 w-9 items-center justify-center rounded-xl border border-neutral-200 text-neutral-500 hover:border-neutral-300 hover:text-neutral-900 dark:border-neutral-800 dark:text-neutral-400 dark:hover:border-neutral-700 dark:hover:text-neutral-100 transition-colors cursor-pointer">
+        <WeChatIcon className="fill-[#07C160] size-5" />
+      </button>
+
+      {/* Modal */}
+      <Modal open={open} onClose={() => setOpen(false)} title="Scan to add me on WeChat" className="text-center">
+        <div className="flex justify-center items-center">
+          <Image src="/wechat.webp" alt="WeChat" width={325} height={100} />
+        </div>
+      </Modal>
+    </>
+  );
 
   const content = (
     <>
