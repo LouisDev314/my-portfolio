@@ -1,7 +1,6 @@
 'use client';
 
 import ProjectCard from '@/components/ProjectCard';
-import ContactCard from '@/components/ContactCard';
 import Footer from '@/components/Footer';
 import { projects } from '@/lib/projects';
 import Link from 'next/link';
@@ -11,15 +10,19 @@ import { Globe } from '@/components/Globe';
 import { ImagesBadge } from '@/components/ui/images-badge';
 import TechStack from '@/components/TechStack';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { Fraunces } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { motion } from 'motion/react';
 import { FlipWords } from '@/components/ui/flip-words';
 import { cn } from '@/lib/utils';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import { DraggableCard } from '@/components/DraggableCard';
+import { Space_Grotesk } from 'next/font/google';
 
-// TODO: switch font
-const fraunces = Fraunces({ subsets: ['latin'], weight: ['500', '700'] });
+const inter = Inter({ subsets: ['latin'] });
+const space = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+});
 
 const cards: CardItem[] = [
   {
@@ -49,7 +52,7 @@ export default function Home() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
       <main className="mx-auto max-w-4xl px-6 pt-28">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
-        <section className="mt-36 mb-16 flex flex-col items-center text-center">
+        <section className="mt-48 mb-16 flex flex-col items-center text-center">
           <h1 className="text-[clamp(6rem,18vw,16rem)] font-blacktracking-[-0.07em] leading-[0.8] break-words text-neutral-900 dark:text-neutral-100 mb-6 font-black">
             Louis
           </h1>
@@ -68,10 +71,12 @@ export default function Home() {
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
               }}
               className={cn(
-                'text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed',
-                fraunces.className,
+                'text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed mt-8',
+                inter.className,
               )}>
-              Technology as a<FlipWords words={['bridge', 'string', 'knot']} duration={2000} />
+              <div className="uppercase tracking-[0.4em] text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-500/80 dark:text-neutral-400/70">
+                Technology as a<FlipWords words={['bridge', 'string', 'knot']} duration={2000} />
+              </div>
             </motion.div>
             <br />
             <motion.div
@@ -81,16 +86,20 @@ export default function Home() {
               }}
               className={cn(
                 'text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed',
-                fraunces.className,
+                inter.className,
               )}>
-              <TextGenerateEffect words={'Connect. Build. Impact.'} duration={1} />
+              <TextGenerateEffect
+                words={'Connect. Build. Impact.'}
+                duration={1}
+                textClassName={`${space.className} text-lg sm:text-xl font-medium tracking-[0.08em]`}
+              />
             </motion.div>
           </motion.div>
         </section>
 
         {/* ── EXPANDABLE CARDS ────────────────────────────────────── */}
         <RevealOnScroll>
-          <section className="mt-48 mb-10 gap-4">
+          <section className="mt-40 mb-10 gap-4">
             <ExpandableCard cards={cards} />
           </section>
         </RevealOnScroll>
@@ -130,7 +139,7 @@ export default function Home() {
 
         {/* ── C) About Me ─────────────────────────────────────── */}
         <RevealOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-24">
             About Me
           </h2>
           <section className="mb-16">

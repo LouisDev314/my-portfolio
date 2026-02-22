@@ -6,11 +6,13 @@ import { cn } from '@/lib/utils';
 export const TextGenerateEffect = ({
   words,
   className,
+  textClassName,
   filter = true,
   duration = 0.5,
 }: {
   words: string;
   className?: string;
+  textClassName?: string;
   filter?: boolean;
   duration?: number;
 }) => {
@@ -52,7 +54,9 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn('font-medium', className)}>
       <div className="mt-4">
-        <div className=" dark:text-white text-black text-lg leading-snug tracking-wide">{renderWords()}</div>
+        <div className={cn('dark:text-white text-black text-lg leading-snug tracking-wide', textClassName)}>
+          {renderWords()}
+        </div>
       </div>
     </div>
   );
