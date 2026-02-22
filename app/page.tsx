@@ -50,7 +50,7 @@ export default function Home() {
       <main className="mx-auto max-w-4xl px-6 pt-28">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
         <section className="mt-36 mb-16 flex flex-col items-center text-center">
-          <h1 className="text-[clamp(5.2rem,14vw,10.5rem)] font-black tracking-[-0.06em] leading-[0.85] wrap-break-word text-neutral-900 dark:text-neutral-100 mb-6">
+          <h1 className="text-[clamp(6rem,18vw,16rem)] font-blacktracking-[-0.07em] leading-[0.8] break-words text-neutral-900 dark:text-neutral-100 mb-6 font-black">
             Louis
           </h1>
 

@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
           <span className="text-base font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>
         </div>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 sm:max-w-md sm:text-right md:max-w-2xl mt-6 mb-12">
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 sm:max-w-md md:max-w-2xl mt-6 mb-12">
           Building at the edge of possibility, where ideas become systems and systems shape what’s next. Each line of
           code moves the world forward —{' '}
           <span className="whitespace-nowrap italic text-amber-500 dark:text-amber-400">sic itur ad astra</span>.

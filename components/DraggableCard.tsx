@@ -4,32 +4,31 @@ import ContactCard from '@/components/ContactCard';
 import Image from 'next/image';
 
 export function DraggableCard() {
-  // TODO: fix sm and md layout
   const items = [
     {
       title: 'Connect. Build. Impact.',
       image: '/connect.webp',
-      className: 'absolute top-5 left-[10%] rotate-[8deg]',
+      className: 'absolute top-5 left-[10%] rotate-[8deg] sm:left-[25%]',
     },
     {
       title: 'Working Across\nTime Zones',
       image: '/timezones.webp',
-      className: 'absolute top-40 right-[35%] rotate-[-12deg]',
+      className: 'absolute top-40 right-[35%] rotate-[-12deg] sm:left-[2%]',
     },
     {
       title: 'RAG · Agents · Automation',
       image: '/AI.webp',
-      className: 'absolute top-15 right-[10%] rotate-[12deg]',
+      className: 'absolute top-15 right-[10%] rotate-[12deg] sm:right-[2%] md:top-25',
     },
     {
       title: 'Full Stack Developer',
       image: '/Microsoft_Atlanta.webp',
-      className: 'absolute top-24 right-[25%] rotate-[-8deg]',
+      className: 'absolute top-24 right-[25%] rotate-[-8deg] sm:left-[8%]',
     },
     {
       title: 'Graduated from\nGeorgia Tech',
       image: '/GT.webp',
-      className: 'absolute top-25 left-[30%] rotate-[4deg] sm:left-[50%]',
+      className: 'absolute top-25 left-[30%] rotate-[4deg] sm:left-[20%] md:left-[25%]',
     },
   ];
   return (
