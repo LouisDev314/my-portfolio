@@ -70,7 +70,7 @@ export default function Home() {
                 'text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed',
                 fraunces.className,
               )}>
-              Technology as a<FlipWords words={['bridge', 'string', 'knot']} />
+              Technology as a<FlipWords words={['bridge', 'string', 'knot']} duration={2000} />
             </motion.div>
             <br />
             <motion.div
@@ -82,7 +82,7 @@ export default function Home() {
                 'text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed',
                 fraunces.className,
               )}>
-              <TextGenerateEffect words={'Connect. Build. Impact.'} />
+              <TextGenerateEffect words={'Connect. Build. Impact.'} duration={1} />
             </motion.div>
           </motion.div>
         </section>

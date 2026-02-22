@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Copy, Check, Globe, Linkedin, Github } from 'lucide-react';
+import RegularCard from '@/components/RegularCard';
 
 const EMAIL = 'louiscch314@gmail.com';
 
@@ -24,8 +25,8 @@ export default function ContactCard() {
     }
   }
 
-  return (
-    <div className="rounded-2xl border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-neutral-900">
+  const content = (
+    <>
       <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-2">
         Let&apos;s connect and build to change the world.
       </h2>
@@ -58,6 +59,8 @@ export default function ContactCard() {
           </a>
         ))}
       </div>
-    </div>
+    </>
   );
+
+  return <RegularCard content={content} />;
 }
