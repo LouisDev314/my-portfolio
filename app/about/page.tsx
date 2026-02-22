@@ -1,17 +1,30 @@
+'use client';
+
 import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
+import TechStackChips from '@/components/TechStackChips';
 
-export const metadata: Metadata = {
-  title: 'About Me',
-  description: 'Learn more about Louis Chan — full-stack developer based in Calgary.',
-};
+// export const metadata: Metadata = {
+//   title: 'About Me',
+//   description: 'Learn more about Louis Chan — full-stack developer based in Calgary.',
+// };
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
       <main className="mx-auto max-w-4xl px-6 pt-28 pb-16">
         <section className="mb-12">
-          <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">About Me</h1>
+          <h1
+            className="text-center
+              text-[clamp(3.5rem,8vw,7rem)]
+              font-black
+              tracking-[-0.03em]
+              leading-[0.9]
+              break-words
+              text-neutral-900 dark:text-neutral-100
+              mb-6">
+            About Me
+          </h1>
           <div className="space-y-4 text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl">
             <p>
               Hi, I&apos;m Louis — a full-stack developer based in Calgary, AB. I love building products that sit at the
@@ -29,34 +42,10 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">Skills</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {[
-              {
-                category: 'Frontend',
-                skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-              },
-              {
-                category: 'Backend',
-                skills: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'REST / GraphQL'],
-              },
-              {
-                category: 'Tools',
-                skills: ['Git', 'Docker', 'Vercel', 'AWS', 'Figma'],
-              },
-            ].map(({ category, skills }) => (
-              <div key={category}>
-                <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3">{category}</h3>
-                <ul className="space-y-1.5">
-                  {skills.map((s) => (
-                    <li key={s} className="text-sm text-neutral-500 dark:text-neutral-400">
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+            Skills
+          </h2>
+          <TechStackChips />
         </section>
       </main>
 
