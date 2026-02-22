@@ -108,7 +108,7 @@ export default function Home() {
         <RevealOnScroll>
           <section className="mb-16">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
                 Projects
               </h2>
               <Link href="/projects" className="self-end">
@@ -139,7 +139,7 @@ export default function Home() {
 
         {/* ── C) About Me ─────────────────────────────────────── */}
         <RevealOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-24">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-24">
             About Me
           </h2>
           <section className="mb-16">
