@@ -16,6 +16,7 @@ export interface ModalProps {
   contentClassName?: string;
 }
 
+// FIXME: when opened should disable scrolling at all
 export function Modal({ open, onClose, title, description, children, className, contentClassName }: ModalProps) {
   useEffect(() => {
     if (!open) return;

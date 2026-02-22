@@ -2,7 +2,7 @@ import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'About Me',
   description: 'Learn more about Louis Chan — full-stack developer based in Calgary.',
 };
 

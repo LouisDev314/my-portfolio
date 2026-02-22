@@ -95,12 +95,12 @@ export default function Home() {
           </section>
         </RevealOnScroll>
 
-        {/* ── B) SELECTED WORK ────────────────────────────────────── */}
+        {/* ── B) Projects ────────────────────────────────────── */}
         <RevealOnScroll>
           <section className="mb-16">
             <div className="flex items-center justify-between mb-5">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
-                Selected Work
+                Projects
               </h2>
               <Link href="/projects" className="self-end">
                 <ImagesBadge

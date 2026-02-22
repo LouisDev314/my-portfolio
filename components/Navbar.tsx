@@ -14,8 +14,8 @@ const NAV_SECTIONS = [
   {
     items: [
       { name: 'Home', href: '/', icon: Home },
-      { name: 'About', href: '/about', icon: User },
-      { name: 'Selected Work', href: '/projects', icon: Code },
+      { name: 'About Me', href: '/about', icon: User },
+      { name: 'Projects', href: '/projects', icon: Code },
       { name: 'Blogs', href: '/blogs', icon: Newspaper },
     ],
   },
