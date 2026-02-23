@@ -11,16 +11,16 @@ export default function AboutPage() {
         <section className="mb-12">
           <h1
             className="text-center
-              text-[clamp(3.5rem,8vw,7rem)]
-              font-black
-              tracking-[-0.03em]
-              leading-[0.9]
-              break-words
-              text-neutral-900 dark:text-neutral-100
-              mb-6">
+            text-[clamp(4.5rem,10vw,9rem)]
+            font-black
+            tracking-[-0.04em]
+            leading-[0.85]
+            break-words
+            text-neutral-900 dark:text-neutral-100
+            mb-12">
             About Me
           </h1>
-          <div className="text-center space-y-4 text-neutral-600 dark:text-neutral-400 leading-relaxed md:mt-12">
+          <div className="text-sm md:text-base text-center space-y-4 text-neutral-600 dark:text-neutral-400 leading-relaxed md:mt-12">
             <p>
               Hi, I’m Louis — a full-stack developer based in Calgary, AB, building products that solve real-world
               problems and create meaningful impact.
