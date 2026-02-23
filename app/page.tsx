@@ -99,7 +99,7 @@ export default function Home() {
 
         {/* ── EXPANDABLE CARDS ────────────────────────────────────── */}
         <RevealOnScroll>
-          <section className="mt-40 mb-10 gap-4">
+          <section className="mt-40 lg:mt-34 mb-10 gap-4">
             <ExpandableCard cards={cards} />
           </section>
         </RevealOnScroll>
