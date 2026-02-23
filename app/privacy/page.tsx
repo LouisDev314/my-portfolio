@@ -84,7 +84,7 @@ function TocItem({ href, label }: { href: string; label: string }) {
 export default function PrivacyPage() {
   return (
     <Container>
-      <header className="relative mx-auto w-full max-w-3xl px-5 pt-14 sm:px-6 sm:pt-20">
+      <header className="relative mx-auto w-full max-w-3xl mt-8 sm:mt-4 px-5 pt-14 sm:px-6 sm:pt-20">
         <div className="flex flex-wrap items-center gap-2">
           <Pill>Legal</Pill>
           <Pill>Privacy</Pill>
