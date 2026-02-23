@@ -6,6 +6,7 @@ import Badge from 'components/Badge';
 import { motion } from 'motion/react';
 import GitHubIcon from '@/assets/icons/github-icon';
 import YoutubeIcon from '@/assets/icons/youtube-icon';
+import Image from 'next/image';
 
 interface ProjectCardProps {
   project: Project;
@@ -83,9 +84,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       }}>
       {/* Image */}
       <div className="relative h-48 overflow-hidden bg-linear-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center">
-        <span className="text-4xl font-bold text-neutral-300 dark:text-neutral-600 group-hover:scale-110 transition-transform duration-500 select-none">
-          {project.name.charAt(0)}
-        </span>
+        {/*<span className="text-4xl font-bold text-neutral-300 dark:text-neutral-600 group-hover:scale-110 transition-transform duration-500 select-none">*/}
+        {/*  {project.name.charAt(0)}*/}
+        {/*</span>*/}
+        <Image src={project.imgUrl} alt="Project Image" width={300} height={300} />
       </div>
 
       {/* Content */}

@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   name: string;
   description: string;
-  image: string;
+  imgUrl: string;
   techs: string[];
   liveUrl?: string;
   demoUrl?: string;
@@ -12,9 +12,9 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: '1',
-    name: 'E-Commerce Platform',
+    name: 'PopBox Studio (Upcoming)',
     description: 'Full-stack shopping platform with real-time inventory, Stripe payments, and an admin dashboard.',
-    image: '/projects/ecommerce.png',
+    imgUrl: '/GT.webp',
     techs: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'],
     liveUrl: 'https://example.com',
     demoUrl: 'https://youtube.com',
@@ -22,9 +22,9 @@ export const projects: Project[] = [
   },
   {
     id: '2',
-    name: 'Task Flow',
+    name: 'AI Project (Upcoming)',
     description: 'Collaborative task manager with real-time sync, team workspaces, and drag-and-drop boards.',
-    image: '/projects/taskflow.png',
+    imgUrl: '/GT.webp',
     techs: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
     liveUrl: 'https://example.com',
     demoUrl: 'https://example.com',
@@ -32,9 +32,9 @@ export const projects: Project[] = [
   },
   {
     id: '3',
-    name: 'Weather Dashboard',
+    name: 'AI Project 2 (Upcoming)',
     description: 'Location-based weather app with interactive maps, hourly forecasts, and historical data charts.',
-    image: '/projects/weather.png',
+    imgUrl: '/GT.webp',
     techs: ['Vue.js', 'TypeScript', 'Chart.js', 'OpenWeather API'],
     liveUrl: 'https://example.com',
     demoUrl: 'https://example.com',
