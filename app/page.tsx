@@ -10,13 +10,12 @@ import { Globe } from '@/components/Globe';
 import { ImagesBadge } from '@/components/ui/images-badge';
 import TechStack from '@/components/TechStack';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { Inter } from 'next/font/google';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import { motion } from 'motion/react';
 import { FlipWords } from '@/components/ui/flip-words';
 import { cn } from '@/lib/utils';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import { DraggableCard } from '@/components/DraggableCard';
-import { Space_Grotesk } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 const space = Space_Grotesk({

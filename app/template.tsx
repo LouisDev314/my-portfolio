@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -10,6 +10,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Expected on mount to sync client state
     setPrefersReducedMotion(mediaQuery.matches);
 
     const listener = (event: MediaQueryListEvent) => {

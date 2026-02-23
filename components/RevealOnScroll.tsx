@@ -9,13 +9,14 @@ interface RevealOnScrollProps {
   threshold?: number;
 }
 
-export default function RevealOnScroll({ children, className = '', threshold = 0.08 }: RevealOnScrollProps) {
+export default function RevealOnScroll({ children, className = '' }: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Expected on mount to sync client state
     setPrefersReducedMotion(mediaQuery.matches);
 
     const listener = (event: MediaQueryListEvent) => {

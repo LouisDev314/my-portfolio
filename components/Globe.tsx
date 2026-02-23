@@ -155,6 +155,7 @@ export function Globe() {
     add(CALGARY, SANTIAGO, 0.34, ARC_COLORS.accent);
 
     return arcs;
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Data is static and makeArc is stable
   }, []);
 
   const globeConfig = {

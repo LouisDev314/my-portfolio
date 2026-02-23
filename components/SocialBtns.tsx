@@ -30,6 +30,7 @@ export default function SocialBtns({ className }: { className?: string }) {
 
   const SOCIALS = [
     {
+      // eslint-disable-next-line @next/next/no-img-element -- Preserving existing img tag for minimal changes
       icon: <img src="/linkedin-icon.svg" alt="My Logo" className="size-5" />,
       href: 'https://www.linkedin.com/in/lcch/',
       label: 'LinkedIn',

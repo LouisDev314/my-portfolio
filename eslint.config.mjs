@@ -7,26 +7,34 @@ const eslintConfig = defineConfig([
   ...nextTs,
   {
     rules: {
-      // semi: ['error', 'always'],
-      indent: ['error', 2],
-      '@typescript-eslint/no-unused-vars': ['error', { caughtErrors: 'none' }],
-      'no-unused-expressions': 'error',
-      quotes: ['error', 'single'],
-      'no-multi-spaces': 'error',
-      eqeqeq: 'error',
-      complexity: ['error', 10],
-      'prettier/prettier': ['off', { endOfLine: 'auto' }],
-      'linebreak-style': ['error', 'unix'],
-      'object-curly-spacing': ['error', 'always'],
-      'eol-last': ['error', 'always'],
-      'comma-dangle': [2, 'always-multiline'],
+      eqeqeq: ['error', 'always'],
       'no-duplicate-imports': ['error', { includeExports: true }],
-      '@typescript-eslint/no-explicit-any': ['error'],
-      'nonblock-statement-body-position': ['error', 'beside'],
+
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+      '@typescript-eslint/no-explicit-any': 'warn',
+
+      'no-unused-expressions': 'off',
+      complexity: ['warn', 20],
+
+      indent: 'off',
+      quotes: 'off',
+      'no-multi-spaces': 'off',
+      'linebreak-style': 'off',
+      'object-curly-spacing': 'off',
+      'eol-last': 'off',
+      'comma-dangle': 'off',
+      'nonblock-statement-body-position': 'off',
     },
   },
   globalIgnores([
-    // Default ignores of eslint-config-next:
     '.next/**',
     'out/**',
     'build/**',

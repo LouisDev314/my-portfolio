@@ -9,7 +9,7 @@ export type CardItem = {
   id?: string;
   title: string;
   description: string;
-  icon: React.ElementType<any>;
+  icon: React.ElementType<{ className?: string }>;
   iconColor?: string;
   content: React.ReactNode | (() => React.ReactNode);
 };
@@ -85,7 +85,7 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
       <ul className={cn('w-full mx-auto flex justify-around gap-4', className)}>
         {cards.map((card) => {
           const cardId = card.id || baseId;
-          const Icon = card.icon as any;
+          const Icon = card.icon as React.ElementType<{ className?: string }>;
           return (
             <motion.div
               layoutId={`card-${card.title}-${cardId}`}
