@@ -6,17 +6,7 @@ import { useTheme } from 'next-themes';
 import { useThemeRipple } from '@/components/ThemeRippleProvider';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import {
-  Sun,
-  Moon,
-  Home,
-  ExternalLink,
-  User,
-  Code,
-  FileText,
-  Handshake,
-  ScrollText,
-} from 'lucide-react';
+import { Sun, Moon, Home, ExternalLink, User, Code, FileText, Handshake, ScrollText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
@@ -48,9 +38,7 @@ function ThemeToggleButton() {
   }, []);
 
   if (!mounted) {
-    return (
-      <div className="h-8 w-8 rounded-full bg-neutral-200 dark:bg-neutral-700 animate-pulse" />
-    );
+    return <div className="h-8 w-8 rounded-full bg-neutral-200 dark:bg-neutral-700 animate-pulse" />;
   }
 
   const isDark = resolvedTheme === 'dark';
@@ -59,13 +47,8 @@ function ThemeToggleButton() {
     <button
       onClick={toggleThemeWithRipple}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="flex size-8 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100 transition-colors"
-    >
-      {isDark ? (
-        <Sun className="size-5 text-amber-400" />
-      ) : (
-        <Moon className="size-5" />
-      )}
+      className="flex size-8 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100 transition-colors">
+      {isDark ? <Sun className="size-5 text-amber-400" /> : <Moon className="size-5" />}
     </button>
   );
 }
@@ -102,42 +85,29 @@ export function NavbarMobile() {
         'lg:hidden fixed justify-center top-4 left-1/2 -translate-x-1/2 z-9999 w-1/3',
         open ? 'w-full' : 'w-57',
       )}
-      ref={ref}
-    >
+      ref={ref}>
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         className={cn(
           'overflow-hidden border border-neutral-200 bg-white shadow-lg dark:border-neutral-800 dark:bg-neutral-900',
-          open ? 'mx-6 rounded-3xl' : 'mx-0 rounded-full',
-        )}
-      >
+          open ? 'mx-4 rounded-3xl' : 'mx-0 rounded-full',
+        )}>
         {/* Pill header — always visible */}
         <div
           onClick={() => setOpen((v) => !v)}
-          onKeyDown={(e) =>
-            (e.key === 'Enter' || e.key === ' ') && setOpen((v) => !v)
-          }
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpen((v) => !v)}
           role="button"
           tabIndex={0}
           className="flex h-12 cursor-pointer items-center justify-between px-4 py-6 outline-none"
           aria-expanded={open}
-          aria-label="Toggle navigation menu"
-        >
+          aria-label="Toggle navigation menu">
           <div className="flex gap-3 justify-between items-center w-full">
             <div className="size-8">
-              <Image
-                src="/portfolio-logo.webp"
-                alt="My PNG image"
-                width={500}
-                height={300}
-                className="rounded-full"
-              />
+              <Image src="/portfolio-logo.webp" alt="My PNG image" width={500} height={300} className="rounded-full" />
             </div>
 
-            <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
-              Louis Chan
-            </span>
+            <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>
 
             {/* Theme toggle — stop propagation so it doesn't toggle the drawer */}
             <div onClick={(e) => e.stopPropagation()}>
@@ -155,24 +125,16 @@ export function NavbarMobile() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="overflow-hidden mx-0"
-            >
+              className="overflow-hidden">
               <div className="px-4 pb-3 pt-2">
                 {NAV_SECTIONS.map((section, si) => (
                   <div key={si}>
-                    {si > 0 && (
-                      <div className="my-2 border-t border-neutral-100 dark:border-neutral-800" />
-                    )}
+                    {si > 0 && <div className="my-2 border-t border-neutral-100 dark:border-neutral-800" />}
                     {section.items.map((item) => {
-                      const isActive =
-                        item.href === '/'
-                          ? pathname === '/'
-                          : pathname.startsWith(item.href);
+                      const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
                       const Icon = item.icon;
 
-                      const handleNavClick = (
-                        e: React.MouseEvent<HTMLAnchorElement>,
-                      ) => {
+                      const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
                         e.preventDefault();
                         if (pathname === item.href) {
                           setOpen(false);
@@ -192,14 +154,9 @@ export function NavbarMobile() {
                             isActive
                               ? 'bg-neutral-100 font-medium text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100'
                               : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100',
-                          )}
-                        >
-                          {isActive && (
-                            <Icon className="size-5 text-amber-400 shrink-0" />
-                          )}
-                          {!isActive && (
-                            <Icon className="size-5 shrink-0" />
-                          )}
+                          )}>
+                          {isActive && <Icon className="size-5 text-amber-400 shrink-0" />}
+                          {!isActive && <Icon className="size-5 shrink-0" />}
                           {item.name}
                         </Link>
                       );
@@ -214,8 +171,7 @@ export function NavbarMobile() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setOpen(false)}
-                    className="flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 transition-colors"
-                  >
+                    className="flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 transition-colors">
                     <div className="flex flex-row items-center">
                       <p>Connect Now</p>
                       <ExternalLink className="size-4 ml-2" />

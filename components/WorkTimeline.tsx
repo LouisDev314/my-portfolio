@@ -174,7 +174,7 @@ export function WorkTimeline() {
   ];
 
   return (
-    <section className="relative w-full overflow-clip">
+    <section className="relative w-full">
       {/* Header */}
       <div className="mx-auto my-16 max-w-3xl px-4 text-center md:my-20">
         <p className="text-sm font-medium tracking-widest text-neutral-500 dark:text-neutral-400">WORK EXPERIENCE</p>
