@@ -75,7 +75,7 @@ export default function Home() {
                 inter.className,
               )}>
               <div className="uppercase tracking-[0.4em] text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-500/80 dark:text-neutral-400/70">
-                Technology as a<FlipWords words={['bridge', 'string', 'knot']} duration={2000} />
+                Technology as a<FlipWords words={['bridge', 'string', 'knot']} duration={2500} />
               </div>
             </motion.div>
             <br />
