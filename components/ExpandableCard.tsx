@@ -5,11 +5,13 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 import { cn } from '@/lib/utils';
 
+type IconProps = { className?: string };
+
 export type CardItem = {
   id?: string;
   title: string;
   description: string;
-  icon: React.ElementType<{ className?: string }>;
+  icon: React.ComponentType<IconProps>;
   iconColor?: string;
   content: React.ReactNode | (() => React.ReactNode);
 };
@@ -85,7 +87,7 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
       <ul className={cn('w-full mx-auto flex justify-around gap-4', className)}>
         {cards.map((card) => {
           const cardId = card.id || baseId;
-          const Icon = card.icon as React.ElementType<{ className?: string }>;
+          const Icon = card.icon;
           return (
             <motion.div
               layoutId={`card-${card.title}-${cardId}`}
