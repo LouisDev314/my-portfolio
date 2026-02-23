@@ -59,7 +59,7 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        'mt-24 border-t border-neutral-200 bg-white dark:border-neutral-800/60 dark:bg-neutral-950',
+        'mt-20 md:mt-24 border-t border-neutral-200 bg-white dark:border-neutral-800/60 dark:bg-neutral-950',
         isHomePage && '-mt-16',
       )}>
       <div className="mx-auto max-w-7xl px-6 py-12">

@@ -38,7 +38,7 @@ const cards: CardItem[] = [
   {
     id: 'tech-stack',
     title: 'Tech Stack',
-    description: 'Skillset',
+    description: 'Skill set',
     icon: Layers,
     iconColor: 'text-indigo-500',
     content: () => {

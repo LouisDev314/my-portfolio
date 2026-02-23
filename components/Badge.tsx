@@ -7,11 +7,13 @@ import { JSX } from 'react';
 export default function Badge({
   title,
   icon,
+  titleClassName,
   fillClassName,
   hasAnim = true,
 }: {
   title: string;
   icon?: JSX.Element;
+  titleClassName?: string;
   fillClassName?: string;
   hasAnim?: boolean;
 }) {
@@ -19,7 +21,11 @@ export default function Badge({
     return (
       <div className="flex justify-center items-center">
         {icon ?? <></>}
-        <span className="px-3 py-1.5 text-xs rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300">
+        <span
+          className={cn(
+            'px-3 py-1.5 text-xs rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300',
+            titleClassName,
+          )}>
           {title}
         </span>
       </div>

@@ -13,7 +13,7 @@ import { WorkTimeline } from '@/components/WorkTimeline';
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-16">
+      <main className="mx-auto max-w-4xl px-6 pt-28 md:pb-16">
         <section className="mb-12">
           <h1
             className="text-center
@@ -26,7 +26,7 @@ export default function AboutPage() {
               mb-6">
             About Me
           </h1>
-          <div className="space-y-4 text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl">
+          <div className="text-center space-y-4 text-neutral-600 dark:text-neutral-400 leading-relaxed md:mt-12">
             <p>
               Hi, I&apos;m Louis — a full-stack developer based in Calgary, AB. I love building products that sit at the
               intersection of great engineering and thoughtful design.
@@ -47,7 +47,6 @@ export default function AboutPage() {
             Skills
           </h2>
           <TechStackChips />
-          {/*  TODO: timeline */}
           <WorkTimeline />
         </section>
       </main>

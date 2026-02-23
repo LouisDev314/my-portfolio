@@ -18,59 +18,61 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const LINE_W = 'w-[6px]'; // actual progress line width
 
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height * (9 / 10));
-    }
-  }, [ref]);
+    if (!ref.current) return;
+
+    const el = ref.current;
+
+    const updateHeight = () => {
+      setHeight(el.offsetHeight);
+    };
+
+    updateHeight();
+
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 50%', 'end 10%'],
+    offset: ['start 85%', 'end 10%'],
   });
 
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.0002], [1, 1]);
+  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height], { clamp: true });
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.01], [1, 1]);
 
   return (
     <div className="w-full font-sans md:px-10" ref={containerRef}>
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">Changelog from my journey</h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          I&apos;ve been working on Aceternity for the past 2 years. Here&apos;s a timeline of my journey.
-        </p>
-      </div>
-
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-28">
-        {/* Logo tip */}
+      <div ref={ref} className="relative max-w-7xl mx-auto">
         <motion.div
           style={{
             y: heightTransform,
             opacity: opacityTransform,
           }}
-          className="absolute left-8.75 top-0 z-50 -translate-x-1/2 -translate-y-1/2">
-          <div className="size-10 rounded-full bg-white dark:bg-black flex items-center justify-center shadow-md ring-1 ring-black/5 dark:ring-white/10">
+          className="absolute left-8.75 top-0 z-50 -translate-x-1/2">
+          <div className="relative size-10 rounded-full bg-white dark:bg-black flex items-center justify-center shadow-md ring-1 ring-black/5 dark:ring-white/10">
             <Image
               src="/linkedin-pfp.webp"
               alt="profile picture"
               fill
               draggable={false}
-              className="object-cover rounded-full"
+              className="object-cover rounded-full border-2"
             />
           </div>
         </motion.div>
 
         {data.map((item, index) => (
-          <div key={index} className="flex justify-start pt-10 md:pt-40 md:gap-10">
+          <div key={index} className="flex justify-start pt-10 sm:pb-16 md:pt-40 md:gap-10">
             {/* ✅ Remove per-item marker entirely */}
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-500 dark:text-neutral-500">
+              <h3 className="hidden md:block text-xl md:pl-20 md:text-3xl font-bold text-neutral-500 dark:text-neutral-500">
                 {item.title}
               </h3>
             </div>
 
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
+            <div className="relative pl-20 pr-4 md:pl-0 w-full">
+              <h3 className="md:hidden block text-xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
                 {item.title}
               </h3>
               {item.content}{' '}

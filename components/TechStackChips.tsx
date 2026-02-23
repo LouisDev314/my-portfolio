@@ -25,6 +25,8 @@ import LangChainIcon from '@/assets/icons/langchain-icon';
 import PandasIcon from '@/assets/icons/pandas-icon';
 import UnrealIcon from '@/assets/icons/unreal-icon';
 import UnityIcon from '@/assets/icons/unity-icon';
+import KafkaIcon from '@/assets/icons/kafka-icon';
+import RabbitMQIcon from '@/assets/icons/rabbitmq-icon';
 
 export default function TechStackChips() {
   const TECH_CATEGORIES = [
@@ -47,6 +49,8 @@ export default function TechStackChips() {
         { title: 'Zod', icon: <ZodIcon className="size-4 fill-[#408AFF]" /> },
         { title: 'Prisma', icon: <PrismaIcon className="size-4 fill-[#2D3748] dark:fill-white" /> },
         { title: 'Java Spring Boot', icon: <SpringBootIcon className="size-4 fill-[#6DB33F]" /> },
+        { title: 'Apache Kafka', icon: <KafkaIcon className="size-4 fill-[#231F20] dark:fill-white" /> },
+        { title: 'RabbitMQ', icon: <RabbitMQIcon className="size-4 fill-[#FF6600]" /> },
         { title: 'Python FastAPI', icon: <FastAPIIcon className="size-4 fill-[#009688]" /> },
       ],
     },
@@ -102,12 +106,7 @@ export default function TechStackChips() {
             <h3 className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-4">{category.title}</h3>
             <div className="flex flex-wrap gap-2">
               {category.techs.map((tech) => (
-                <Badge
-                  key={tech.title}
-                  title={tech.title}
-                  icon={tech.icon}
-                  fillClassName="bg-neutral-200/60 dark:bg-indigo-500/20"
-                />
+                <Badge key={tech.title} title={tech.title} icon={tech.icon} fillClassName="bg-indigo-500/20" />
               ))}
             </div>
           </div>
