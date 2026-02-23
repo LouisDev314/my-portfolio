@@ -54,8 +54,15 @@ export function NavbarDesktop() {
 
   return (
     <div className="hidden lg:block w-full">
-      <Navbar className="fixed top-4 left-1/2 -translate-x-1/2 z-9999 w-[calc(100%-2rem)] max-w-6xl pointer-events-none">
-        <NavBody className="bg-white/95 backdrop-blur-md border border-neutral-200 shadow-sm dark:bg-neutral-900/95 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 flex items-center justify-between px-4 py-2 pointer-events-auto">
+      <Navbar className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] w-[calc(100%-2rem)] max-w-6xl pointer-events-none">
+        <NavBody
+          className={cn(
+            // glass background
+            'bg-white/70 backdrop-blur-xl border border-white/30 shadow-sm',
+            'dark:bg-neutral-900/60 dark:border-white/10',
+            // layout
+            'text-neutral-900 dark:text-neutral-100 flex items-center justify-between px-4 py-2 pointer-events-auto',
+          )}>
           <div className="flex items-center space-x-3 shrink-0">
             <Image
               src="/portfolio-logo.webp"
@@ -81,8 +88,8 @@ export function NavbarDesktop() {
                   className={cn(
                     'px-3 py-1.5 text-sm rounded-full transition-colors font-medium whitespace-nowrap relative',
                     isActive
-                      ? 'bg-neutral-100 text-amber-500 dark:bg-neutral-800/80 dark:text-amber-400'
-                      : 'hover:bg-neutral-50 dark:hover:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300',
+                      ? 'bg-neutral-900/5 text-amber-400 dark:bg-white/10'
+                      : 'hover:bg-neutral-900/5 dark:hover:bg-white/10 text-neutral-600 dark:text-neutral-300',
                   )}>
                   {item.name}
                 </Link>
@@ -90,7 +97,7 @@ export function NavbarDesktop() {
             })}
 
             <div className="relative group inline-block">
-              <button className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-full transition-colors font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800/80">
+              <button className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-full transition-colors font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-900/5 dark:hover:bg-white/10">
                 More <ChevronDown className="size-3.5 opacity-60" />
               </button>
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200">
