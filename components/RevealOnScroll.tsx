@@ -44,8 +44,8 @@ export default function RevealOnScroll({ children, className = '', threshold = 0
       },
       {
         threshold: [0, 0.06, 0.10],
-        rootMargin: "12% 0px -12% 0px"
-      }
+        rootMargin: '12% 0px -12% 0px',
+      },
     );
 
     observer.observe(element);
@@ -63,7 +63,7 @@ export default function RevealOnScroll({ children, className = '', threshold = 0
       initial="hidden"
       variants={{
         hidden: { opacity: 0, y: 12 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
       }}
       className={className}
     >

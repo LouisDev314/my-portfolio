@@ -66,7 +66,7 @@ export function ThemeRippleProvider({ children }: { children: React.ReactNode })
       // 4) Animate overlay
       const animation = overlay.animate(
         [
-          { transform: `translate(-50%, -50%) scale(1)`, opacity: 1 },
+          { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
           { transform: `translate(-50%, -50%) scale(${endScale})`, opacity: 1 },
         ],
         {
