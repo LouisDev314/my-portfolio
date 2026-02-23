@@ -1,4 +1,5 @@
 'use client';
+
 import { useScroll, useTransform, motion } from 'motion/react';
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
@@ -64,7 +65,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
         {data.map((item, index) => (
           <div key={index} className="flex justify-start pt-10 sm:pb-16 md:pt-40 md:gap-10">
-            {/* ✅ Remove per-item marker entirely */}
+            {/* Remove per-item marker entirely */}
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
               <h3 className="hidden md:block text-xl md:pl-20 md:text-3xl font-bold text-neutral-500 dark:text-neutral-500">
                 {item.title}
@@ -80,7 +81,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           </div>
         ))}
 
-        {/* ✅ Track + animated progress */}
+        {/* Track + animated progress */}
         <div
           style={{ height: height + 'px' }}
           className={[

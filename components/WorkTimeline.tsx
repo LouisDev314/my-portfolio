@@ -2,6 +2,7 @@ import React from 'react';
 import { Timeline } from '@/components/ui/timeline';
 import { Briefcase, MapPin } from 'lucide-react';
 import Badge from '@/components/Badge';
+import { LinkPreview } from '@/components/ui/link-preview';
 
 function MetaPill({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
@@ -14,11 +15,13 @@ function MetaPill({ icon, children }: { icon: React.ReactNode; children: React.R
 
 function CompanyHeader({
   company,
+  companyUrl,
   role,
   location,
   workType,
 }: {
   company: string;
+  companyUrl: string;
   role: string;
   location: string;
   workType: string;
@@ -26,7 +29,11 @@ function CompanyHeader({
   return (
     <div className="mb-4">
       <div className="flex flex-col gap-1">
-        <p className="text-base md:text-lg font-semibold text-neutral-900 dark:text-neutral-100">{company}</p>
+        <LinkPreview
+          url={companyUrl}
+          className="text-base underline md:text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+          {company}
+        </LinkPreview>
         <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">{role}</p>
       </div>
 
@@ -46,6 +53,7 @@ export function WorkTimeline() {
         <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
           <CompanyHeader
             company="PopBox Studio"
+            companyUrl="https://popboxstudio.com/"
             location="Calgary, Canada"
             role="Co-Founder · AI Automation & Full Stack Engineer"
             workType="Remote"
@@ -78,6 +86,7 @@ export function WorkTimeline() {
         <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
           <CompanyHeader
             company="Virtual Gaming Technology"
+            companyUrl="https://www.vgt.com.hk/en/"
             location="Hong Kong"
             role="Full Stack Developer"
             workType="On-site"
@@ -110,6 +119,7 @@ export function WorkTimeline() {
         <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
           <CompanyHeader
             company="Future Successors"
+            companyUrl="https://futuresuccessors.org/"
             location="Atlanta, United States"
             role="Software Engineer Intern"
             workType="Remote/On-site"
@@ -138,6 +148,7 @@ export function WorkTimeline() {
         <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
           <CompanyHeader
             company="Microsoft"
+            companyUrl="https://www.xbox.com/en-US/xbox-game-studios/game-camp"
             location="Atlanta, United States"
             role="Xbox Summer Camp Engineer"
             workType="Remote/On-site"

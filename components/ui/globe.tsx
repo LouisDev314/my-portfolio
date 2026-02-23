@@ -197,7 +197,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
   // Handle rings animation with cleanup
   useEffect(() => {
     if (!globeRef.current || !isInitialized || !data) return;
-    if ((defaultProps.rings ?? 0) <= 0) return; // ✅ do nothing when rings disabled
+    if ((defaultProps.rings ?? 0) <= 0) return; // do nothing when rings disabled
 
     const interval = setInterval(() => {
       if (!globeRef.current) return;
@@ -274,7 +274,7 @@ export function World(props: WorldProps) {
         fov: 50,
         near: 180,
         far: 1800,
-        position: [x, y, z], // ✅ starts tilted
+        position: [x, y, z], // starts tilted
       }}>
       <WebGLRendererConfig />
       <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
