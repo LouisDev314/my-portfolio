@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { useThemeRipple } from '@/components/ThemeRippleProvider';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Sun, Moon, Home, ExternalLink, User, Code, Newspaper } from 'lucide-react';
+import { Sun, Moon, Home, ExternalLink, User, Code, FileText, Handshake, ScrollText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
@@ -16,7 +16,13 @@ const NAV_SECTIONS = [
       { name: 'Home', href: '/', icon: Home },
       { name: 'About Me', href: '/about', icon: User },
       { name: 'Projects', href: '/projects', icon: Code },
-      { name: 'Blogs', href: '/blogs', icon: Newspaper },
+      { name: 'Blogs', href: '/blogs', icon: FileText },
+    ],
+  },
+  {
+    items: [
+      { name: 'Privacy Policy', href: '/privacy', icon: ScrollText },
+      { name: 'Terms & Conditions', href: '/terms', icon: Handshake },
     ],
   },
 ];
