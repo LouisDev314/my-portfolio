@@ -59,17 +59,6 @@ export function NavbarMobile() {
   const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    if (open) document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [open]);
-
   // Close on ESC
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
@@ -80,109 +69,135 @@ export function NavbarMobile() {
   }, []);
 
   return (
-    <div
-      className={cn(
-        'lg:hidden fixed justify-center top-4 left-1/2 -translate-x-1/2 z-9999 w-1/3',
-        open ? 'w-full' : 'w-57',
-      )}
-      ref={ref}>
-      <motion.div
-        layout
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+    <>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="backdrop"
+            className="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-[2px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            // IMPORTANT: use pointerdown so it closes before "click" happens
+            onPointerDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setOpen(false);
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <div
         className={cn(
-          'overflow-hidden border border-neutral-200 bg-white shadow-lg dark:border-neutral-800 dark:bg-neutral-900',
-          open ? 'mx-4 rounded-3xl' : 'mx-0 rounded-full',
-        )}>
-        {/* Pill header — always visible */}
-        <div
-          onClick={() => setOpen((v) => !v)}
-          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpen((v) => !v)}
-          role="button"
-          tabIndex={0}
-          className="flex h-12 cursor-pointer items-center justify-between px-4 py-6 outline-none"
-          aria-expanded={open}
-          aria-label="Toggle navigation menu">
-          <div className="flex gap-3 justify-between items-center w-full">
-            <div className="size-8">
-              <Image src="/portfolio-logo.webp" alt="My PNG image" width={500} height={300} className="rounded-full" />
-            </div>
+          'lg:hidden fixed justify-center top-4 left-1/2 -translate-x-1/2 z-9999 w-1/3',
+          open ? 'w-full' : 'w-57',
+        )}
+        ref={ref}>
+        <motion.div
+          layout
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          className={cn(
+            'overflow-hidden border border-neutral-200 bg-white shadow-lg dark:border-neutral-800 dark:bg-neutral-900',
+            open ? 'mx-4 rounded-3xl' : 'mx-0 rounded-full',
+          )}>
+          {/* Pill header — always visible */}
+          <div
+            onClick={() => setOpen((v) => !v)}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpen((v) => !v)}
+            role="button"
+            tabIndex={0}
+            className="flex h-12 cursor-pointer items-center justify-between px-4 py-6 outline-none"
+            aria-expanded={open}
+            aria-label="Toggle navigation menu">
+            <div className="flex gap-3 justify-between items-center w-full">
+              <div className="size-8">
+                <Image
+                  src="/portfolio-logo.webp"
+                  alt="My PNG image"
+                  width={500}
+                  height={300}
+                  className="rounded-full"
+                />
+              </div>
 
-            <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>
+              <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>
 
-            {/* Theme toggle — stop propagation so it doesn't toggle the drawer */}
-            <div onClick={(e) => e.stopPropagation()}>
-              <ThemeToggleButton />
+              {/* Theme toggle — stop propagation so it doesn't toggle the drawer */}
+              <div onClick={(e) => e.stopPropagation()}>
+                <ThemeToggleButton />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Drawer content */}
-        <AnimatePresence initial={false}>
-          {open && (
-            <motion.div
-              key="drawer"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="overflow-hidden">
-              <div className="px-4 pb-3 pt-2">
-                {NAV_SECTIONS.map((section, si) => (
-                  <div key={si}>
-                    {si > 0 && <div className="my-2 border-t border-neutral-100 dark:border-neutral-800" />}
-                    {section.items.map((item) => {
-                      const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-                      const Icon = item.icon;
+          {/* Drawer content */}
+          <AnimatePresence initial={false}>
+            {open && (
+              <motion.div
+                key="drawer"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                className="overflow-hidden">
+                <div className="px-4 pb-3 pt-2">
+                  {NAV_SECTIONS.map((section, si) => (
+                    <div key={si}>
+                      {si > 0 && <div className="my-2 border-t border-neutral-100 dark:border-neutral-800" />}
+                      {section.items.map((item) => {
+                        const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+                        const Icon = item.icon;
 
-                      const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        if (pathname === item.href) {
+                        const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+                          e.preventDefault();
+                          if (pathname === item.href) {
+                            setOpen(false);
+                            return;
+                          }
                           setOpen(false);
-                          return;
-                        }
-                        setOpen(false);
-                        router.push(item.href); // Immediately map routing
-                      };
+                          router.push(item.href); // Immediately map routing
+                        };
 
-                      return (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={handleNavClick}
-                          className={cn(
-                            'flex items-center gap-3 rounded-xl h-12 mb-1 px-4 py-2 text-sm transition-colors',
-                            isActive
-                              ? 'bg-neutral-100 font-medium text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100'
-                              : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100',
-                          )}>
-                          {isActive && <Icon className="size-5 text-amber-400 shrink-0" />}
-                          {!isActive && <Icon className="size-5 shrink-0" />}
-                          {item.name}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                ))}
-
-                {/* Spacer + CTA */}
-                <div className="space-y-1.5 mt-2 mb-3">
-                  <a
-                    href="https://www.linkedin.com/in/lcch/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setOpen(false)}
-                    className="flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 transition-colors">
-                    <div className="flex flex-row items-center">
-                      <p>Connect Now</p>
-                      <ExternalLink className="size-4 ml-2" />
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={handleNavClick}
+                            className={cn(
+                              'flex items-center gap-3 rounded-xl h-12 mb-1 px-4 py-2 text-sm transition-colors',
+                              isActive
+                                ? 'bg-neutral-100 font-medium text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100'
+                                : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100',
+                            )}>
+                            {isActive && <Icon className="size-5 text-amber-400 shrink-0" />}
+                            {!isActive && <Icon className="size-5 shrink-0" />}
+                            {item.name}
+                          </Link>
+                        );
+                      })}
                     </div>
-                  </a>
+                  ))}
+
+                  {/* Spacer + CTA */}
+                  <div className="space-y-1.5 mt-2 mb-3">
+                    <a
+                      href="https://www.linkedin.com/in/lcch/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setOpen(false)}
+                      className="flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 transition-colors">
+                      <div className="flex flex-row items-center">
+                        <p>Connect Now</p>
+                        <ExternalLink className="size-4 ml-2" />
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </>
   );
 }
