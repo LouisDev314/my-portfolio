@@ -6,6 +6,7 @@ import Navbar from '@/components/navbar/Navbar';
 import SmoothScroll from '@/components/SmoothScroll';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <ThemeRippleProvider>
             <Navbar />
             {children}
+            <Analytics />
           </ThemeRippleProvider>
         </ThemeProvider>
       </body>
