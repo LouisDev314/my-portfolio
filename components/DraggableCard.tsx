@@ -33,7 +33,9 @@ export function DraggableCard() {
   ];
   return (
     <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
-      <ContactCard />
+      <div className="size-full -mt-60">
+        <ContactCard />
+      </div>
       {items.map((item, index) => (
         <DraggableCardBody className={item.className} key={index}>
           <Image

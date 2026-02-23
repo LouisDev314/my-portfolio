@@ -58,8 +58,8 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        'mt-8 sm:mt-20 md:mt-24 border-t border-neutral-200 bg-white dark:border-neutral-800/60 dark:bg-neutral-950',
-        isHomePage && '-mt-16',
+        'mt-0 border-t border-neutral-200 bg-white dark:border-neutral-800/60 dark:bg-neutral-950',
+        isHomePage ? '-mt-16' : 'mt-24',
       )}>
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="flex items-center gap-2">

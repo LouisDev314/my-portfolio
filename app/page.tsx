@@ -52,7 +52,7 @@ export default function Home() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
       <main className="mx-auto max-w-4xl px-6 pt-28">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
-        <section className="mt-48 mb-16 flex flex-col items-center text-center">
+        <section className="mt-24 sm:mt-48 mb-16 flex flex-col items-center text-center">
           <h1 className="text-[clamp(6rem,18vw,16rem)] font-blacktracking-[-0.07em] leading-[0.8] break-words text-neutral-900 dark:text-neutral-100 mb-6 font-black">
             Louis
           </h1>
@@ -99,7 +99,7 @@ export default function Home() {
 
         {/* ── EXPANDABLE CARDS ────────────────────────────────────── */}
         <RevealOnScroll>
-          <section className="mt-40 lg:mt-24 mb-10 gap-4">
+          <section className="mt-12 sm:mt-40 lg:mt-24 mb-10 gap-4">
             <ExpandableCard cards={cards} />
           </section>
         </RevealOnScroll>
