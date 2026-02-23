@@ -1,14 +1,8 @@
 'use client';
 
 import Footer from '@/components/Footer';
-import type { Metadata } from 'next';
 import TechStackChips from '@/components/TechStackChips';
 import { WorkTimeline } from '@/components/WorkTimeline';
-
-// export const metadata: Metadata = {
-//   title: 'About Me',
-//   description: 'Learn more about Louis Chan — full-stack developer based in Calgary.',
-// };
 
 export default function AboutPage() {
   return (
@@ -28,16 +22,17 @@ export default function AboutPage() {
           </h1>
           <div className="text-center space-y-4 text-neutral-600 dark:text-neutral-400 leading-relaxed md:mt-12">
             <p>
-              Hi, I&apos;m Louis — a full-stack developer based in Calgary, AB. I love building products that sit at the
-              intersection of great engineering and thoughtful design.
+              Hi, I’m Louis — a full-stack developer based in Calgary, AB, building products that solve real-world
+              problems and create meaningful impact.
             </p>
             <p>
-              I specialize in React, Next.js, Node.js, and TypeScript. I care deeply about performance, accessibility,
-              and developer experience.
+              I work across the stack with React, Next.js, Node.js, and TypeScript, crafting scalable systems, intuitive
+              interfaces, and increasingly, AI-driven workflows.
             </p>
             <p>
-              When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open source, or
-              sharing what I&apos;ve learned with the community.
+              I believe technology is more than code — it’s a way to connect ideas, empower people, and shape the
+              future. I’m driven to turn ideas into production-ready solutions that are thoughtful, fast, and built to
+              last.
             </p>
           </div>
         </section>
