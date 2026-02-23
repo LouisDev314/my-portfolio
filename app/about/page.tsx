@@ -3,6 +3,7 @@
 import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
 import TechStackChips from '@/components/TechStackChips';
+import { WorkTimeline } from '@/components/WorkTimeline';
 
 // export const metadata: Metadata = {
 //   title: 'About Me',
@@ -46,6 +47,8 @@ export default function AboutPage() {
             Skills
           </h2>
           <TechStackChips />
+          {/*  TODO: timeline */}
+          <WorkTimeline />
         </section>
       </main>
 
