@@ -16,6 +16,7 @@ import { FlipWords } from '@/components/ui/flip-words';
 import { cn } from '@/lib/utils';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import { DraggableCard } from '@/components/DraggableCard';
+import { useTailwindBreakpoint } from '@/hooks/use-tailwind-breakpoint';
 
 const inter = Inter({ subsets: ['latin'] });
 const space = Space_Grotesk({
@@ -47,6 +48,8 @@ const cards: CardItem[] = [
 ];
 
 export default function Home() {
+  const { isSm } = useTailwindBreakpoint();
+
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
       <main className="mx-auto max-w-4xl px-6 pt-28">
@@ -73,8 +76,9 @@ export default function Home() {
                 'text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed mt-8',
                 inter.className,
               )}>
-              <div className="uppercase tracking-[0.4em] text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-500/80 dark:text-neutral-400/70">
-                Technology as a<FlipWords words={['bridge', 'string', 'knot']} duration={2500} />
+              <div className="uppercase mx-auto tracking-[0.4em] text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-500/80 dark:text-neutral-400/70">
+                Technology as a{isSm ? <></> : <br />}
+                <FlipWords words={['bridge', 'string', 'knot']} duration={2500} />
               </div>
             </motion.div>
             <br />
