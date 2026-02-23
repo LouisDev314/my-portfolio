@@ -36,15 +36,14 @@ const footerGroups: FooterGroup[] = [
   {
     title: 'Projects',
     links: [
-      { label: 'Rune', href: 'https://rune.com', external: true }, // Placeholder
-      { label: 'RuneAI', href: 'https://rune.ai', external: true }, // Placeholder
-      { label: 'RuneHub', href: 'https://runehub.com', external: true }, // Placeholder
+      { label: 'Project 1', href: 'https://example.com', external: true }, // Placeholder
+      { label: 'Project 2', href: 'https://example.com', external: true }, // Placeholder
+      { label: 'Project 3', href: 'https://example.com', external: true }, // Placeholder
     ],
   },
   {
     title: 'Legal',
     links: [
-      // TODO: Create privacy policy and terms pages
       { label: 'Privacy Policy', href: '/privacy' },
       { label: 'Terms & Conditions', href: '/terms' },
     ],
