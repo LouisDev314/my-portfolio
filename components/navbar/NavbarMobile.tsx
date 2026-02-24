@@ -117,7 +117,7 @@ export function NavbarMobile() {
                   alt="My PNG image"
                   width={500}
                   height={300}
-                  className="rounded-full"
+                  className="rounded-full border border-amber-400 dark:border-0"
                 />
               </div>
 

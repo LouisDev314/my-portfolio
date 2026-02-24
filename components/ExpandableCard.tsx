@@ -93,7 +93,26 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
               layoutId={`card-${card.title}-${cardId}`}
               key={`card-${card.title}-${cardId}`}
               onClick={() => setActive(card)}
-              className="p-4 size-38 flex flex-col justify-center items-center hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-3xl cursor-pointer relative z-0 border-[0.5] border-amber-600 dark:border-amber-400">
+              // className="p-4 size-36 sm:size-38 flex flex-col justify-center items-center hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-3xl cursor-pointer relative z-0 border-[0.5] border-amber-600 dark:border-amber-400"
+              className="
+                p-4 size-38
+                flex flex-col justify-center items-center
+                rounded-3xl relative z-0
+                border border-neutral-200 dark:border-neutral-800
+
+                transition-all duration-200 ease-out
+                cursor-pointer
+
+                hover:-translate-y-1
+                hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/30
+                hover:border-neutral-300 dark:hover:border-neutral-700
+                hover:bg-neutral-50 dark:hover:bg-neutral-900
+
+                active:scale-[0.98]
+
+                focus-visible:outline-none
+                focus-visible:ring-2 focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600
+                ">
               <div className="flex gap-4 flex-col items-center justify-center">
                 <motion.div layoutId={`image-${card.title}-${cardId}`} className="flex justify-center">
                   <Icon className={cn('size-6', card.iconColor)} />

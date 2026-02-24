@@ -69,7 +69,7 @@ export function NavbarDesktop() {
               alt="My PNG image"
               width={32}
               height={32}
-              className="rounded-full size-8"
+              className="rounded-full size-8 border border-amber-400 dark:border-0"
             />
             <span className="text-sm font-semibold whitespace-nowrap">Louis Chan</span>
           </div>
