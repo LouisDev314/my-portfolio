@@ -1,7 +1,7 @@
 import React from 'react';
 import { DraggableCardBody, DraggableCardContainer } from '@/components/ui/draggable-card';
-import ContactCard from '@/components/ContactCard';
 import Image from 'next/image';
+import { WorldMapSection } from '@/components/WorldMapSection';
 
 export function DraggableCard() {
   const items = [
@@ -28,14 +28,12 @@ export function DraggableCard() {
     {
       title: 'Graduated from\nGeorgia Tech',
       image: '/GT.webp',
-      className: 'absolute top-25 left-[30%] rotate-[4deg] sm:left-[20%] md:left-[25%]',
+      className: 'absolute top-25 left-[30%] rotate-[4deg] lg:rotate-[4deg] sm:left-[20%] md:left-[25%] lg:left-[50%]',
     },
   ];
   return (
     <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
-      <div className="size-full -mt-60">
-        <ContactCard />
-      </div>
+      <WorldMapSection />
       {items.map((item, index) => (
         <DraggableCardBody className={item.className} key={index}>
           <Image

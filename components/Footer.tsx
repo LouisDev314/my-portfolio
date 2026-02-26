@@ -64,7 +64,13 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="flex items-center gap-2">
           <div className="size-8">
-            <Image src="/portfolio-logo.webp" alt="My PNG image" width={500} height={300} className="rounded-full" />
+            <Image
+              src="/portfolio-logo.webp"
+              alt="My portfolio logo"
+              width={500}
+              height={300}
+              className="rounded-full"
+            />
           </div>
           <span className="text-base font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>
         </div>

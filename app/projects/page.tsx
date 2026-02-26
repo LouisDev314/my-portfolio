@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <main className="mx-auto max-w-4xl px-6 pt-28">
+      <main className="mx-auto max-w-6xl px-6 pt-28">
         <section className="mb-12">
           <PageHeaderTitle title="Projects" />
 
