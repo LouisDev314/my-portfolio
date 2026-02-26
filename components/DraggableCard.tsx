@@ -28,7 +28,7 @@ export function DraggableCard() {
     {
       title: 'Graduated from\nGeorgia Tech',
       image: '/GT.webp',
-      className: 'absolute top-25 left-[30%] rotate-[4deg] sm:left-[20%] md:left-[25%]',
+      className: 'absolute top-25 left-[30%] rotate-[4deg] lg:rotate-[4deg] sm:left-[20%] md:left-[25%] lg:left-[50%]',
     },
   ];
   return (

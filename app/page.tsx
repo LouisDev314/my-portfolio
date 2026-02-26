@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import { DraggableCard } from '@/components/DraggableCard';
 import { useTailwindBreakpoint } from '@/hooks/use-tailwind-breakpoint';
+import { Cover } from '@/components/ui/cover';
 
 const inter = Inter({ subsets: ['latin'] });
 const space = Space_Grotesk({
@@ -97,6 +98,10 @@ export default function Home() {
                 textClassName={`${space.className} text-lg sm:text-xl font-medium tracking-[0.08em]`}
               />
             </motion.div>
+
+            <div className="mt-6">
+              <Cover className="text-amber-400 italic text-xl sm:text-2xl">sic itur ad astra</Cover>
+            </div>
           </motion.div>
         </section>
 
