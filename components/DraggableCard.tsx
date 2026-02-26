@@ -2,6 +2,7 @@ import React from 'react';
 import { DraggableCardBody, DraggableCardContainer } from '@/components/ui/draggable-card';
 import ContactCard from '@/components/ContactCard';
 import Image from 'next/image';
+import { WorldMapSection } from '@/components/WorldMapSection';
 
 export function DraggableCard() {
   const items = [
@@ -33,9 +34,7 @@ export function DraggableCard() {
   ];
   return (
     <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
-      <div className="size-full -mt-60">
-        <ContactCard />
-      </div>
+      <WorldMapSection />
       {items.map((item, index) => (
         <DraggableCardBody className={item.className} key={index}>
           <Image

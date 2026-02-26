@@ -6,13 +6,13 @@ import SocialBtns from '@/components/SocialBtns';
 
 const EMAIL = 'louiscch314@gmail.com';
 
-export default function ContactCard() {
+export default function ContactCard({ className }: { className?: string }) {
   const content = (
-    <>
+    <div className={className}>
       <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-2">
         Let&apos;s connect and build
       </h2>
-      <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">To change the world.</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">to change the world.</p>
       {/* Divider */}
       <div className="border-b border-neutral-200 dark:border-neutral-800 mb-4" />
 
@@ -24,8 +24,8 @@ export default function ContactCard() {
 
       {/* Social links */}
       <SocialBtns />
-    </>
+    </div>
   );
 
-  return <RegularCard content={content} className="p-6" />;
+  return <RegularCard content={content} className="p-6 mx-4" />;
 }
