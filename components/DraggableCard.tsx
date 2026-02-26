@@ -1,6 +1,5 @@
 import React from 'react';
 import { DraggableCardBody, DraggableCardContainer } from '@/components/ui/draggable-card';
-import ContactCard from '@/components/ContactCard';
 import Image from 'next/image';
 import { WorldMapSection } from '@/components/WorldMapSection';
 

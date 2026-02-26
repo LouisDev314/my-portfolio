@@ -2,11 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useTheme } from 'next-themes';
-import { useThemeRipple } from '@/components/ThemeRippleProvider';
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ExternalLink, Sun, Moon, ChevronDown } from 'lucide-react';
+import { ExternalLink, ChevronDown } from 'lucide-react';
 import { Navbar, NavBody } from '@/components/ui/resizable-navbar';
 import { cn } from '@/lib/utils';
 import ThemeToggleBtn from '@/components/ThemeToggleBtn';

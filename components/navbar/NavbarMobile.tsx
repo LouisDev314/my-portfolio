@@ -2,11 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useTheme } from 'next-themes';
-import { useThemeRipple } from '@/components/ThemeRippleProvider';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Sun, Moon, Home, ExternalLink, User, Code, FileText, Handshake, ScrollText } from 'lucide-react';
+import { Home, ExternalLink, User, Code, FileText, Handshake, ScrollText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import ThemeToggleBtn from '@/components/ThemeToggleBtn';
