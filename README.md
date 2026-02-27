@@ -101,4 +101,4 @@ Push the code to your `main` branch connected to a Vercel project to trigger aut
 
 **Louis Chan**
 * GitHub: [@LouisDev314](https://github.com/LouisDev314)
-* LinkedIn: [in/your-profile](https://www.linkedin.com/in/lcch/)
+* LinkedIn: [in/lcch](https://www.linkedin.com/in/lcch/)
