@@ -27,6 +27,8 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
   const baseId = useId();
 
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setActive(false);
@@ -36,11 +38,14 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
     if (active && typeof active === 'object') {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = originalOverflow;
     }
 
     window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
   }, [active]);
 
   useOutsideClick(ref as React.RefObject<HTMLDivElement>, () => setActive(null));
@@ -49,7 +54,7 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
     <>
       <AnimatePresence>
         {active && typeof active === 'object' ? (
-          <div className="fixed inset-0 z-100 grid place-items-center overflow-hidden">
+          <div className="fixed inset-0 z-[100] grid place-items-center overflow-hidden">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -65,7 +70,7 @@ export function ExpandableCard({ cards, className }: ExpandableCardsProps) {
             <motion.div
               layoutId={`card-${active.title}-${active.id || baseId}`}
               ref={ref as React.RefObject<HTMLDivElement>}
-              className="w-9/10 h-3/4 bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden z-10"
+              className="h-3/4 w-[90%] overflow-hidden rounded-3xl bg-white z-10 dark:bg-neutral-900"
               // trap scroll so it doesn't chain to body
               onWheel={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}>

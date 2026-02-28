@@ -26,7 +26,7 @@ export function NavbarDesktop() {
 
   return (
     <div className="hidden lg:block w-full">
-      <Navbar className="fixed top-4 left-1/2 -translate-x-1/2 z-9999 w-[calc(100%-2rem)] max-w-6xl pointer-events-none">
+      <Navbar className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] w-[calc(100%-2rem)] max-w-6xl pointer-events-none">
         <NavBody
           className={cn(
             // glass background

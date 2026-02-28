@@ -22,14 +22,19 @@ export default function SmoothScroll() {
       touchMultiplier: 2,
     });
 
+    let rafId = 0;
+    let isActive = true;
+
     function raf(time: number) {
+      if (!isActive) return;
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    const rafId = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      isActive = false;
       cancelAnimationFrame(rafId);
       lenis.destroy();
     };
