@@ -1,7 +1,6 @@
 'use client';
 
 import WorldMap from '@/components/ui/world-map';
-import { motion } from 'motion/react';
 
 export function WorldMapSection() {
   return (

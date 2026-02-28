@@ -1,19 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Copy, Check } from 'lucide-react';
 
 export default function CopyBtn({ email }: { email: string }) {
   const [copied, setCopied] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(email);
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      return;
+    }
 
     setCopied(true);
 
     // reset after 2s
-    setTimeout(() => setCopied(false), 2000);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => setCopied(false), 2000);
   };
 
   return (

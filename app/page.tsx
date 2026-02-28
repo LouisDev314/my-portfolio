@@ -10,23 +10,14 @@ import { Globe } from '@/components/Globe';
 import { ImagesBadge } from '@/components/ui/images-badge';
 import TechStack from '@/components/TechStack';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { Inter, Space_Grotesk } from 'next/font/google';
 import { motion } from 'motion/react';
 import { FlipWords } from '@/components/ui/flip-words';
-import { cn } from '@/lib/utils';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import { DraggableCard } from '@/components/DraggableCard';
-import { useTailwindBreakpoint } from '@/hooks/use-tailwind-breakpoint';
 import { Cover } from '@/components/ui/cover';
 import InfinitePicturesCarousel from '@/components/InfinitePicturesCarousel';
 import ContactCard from '@/components/ContactCard';
 import React from 'react';
-
-const inter = Inter({ subsets: ['latin'] });
-const space = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-});
 
 const cards: CardItem[] = [
   {
@@ -52,14 +43,12 @@ const cards: CardItem[] = [
 ];
 
 export default function Home() {
-  const { isSm } = useTailwindBreakpoint();
-
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
       <main className="mx-auto max-w-7xl px-6 pt-28">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
         <section className="mt-24 sm:mt-48 lg:mt-40 mb-16 flex flex-col items-center text-center">
-          <h1 className="text-[clamp(6rem,18vw,16rem)] font-blacktracking-[-0.07em] leading-[0.8] wrap-break-word text-neutral-900 dark:text-neutral-100 mb-6 font-black">
+          <h1 className="mb-6 text-[clamp(6rem,18vw,16rem)] font-black leading-[0.8] tracking-[-0.07em] break-words text-neutral-900 dark:text-neutral-100">
             Louis
           </h1>
 
@@ -76,12 +65,10 @@ export default function Home() {
                 hidden: { opacity: 0, y: 8 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
               }}
-              className={cn(
-                'text-xl sm:text-xl font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed mt-8',
-                inter.className,
-              )}>
+              className="mt-8 text-xl font-medium uppercase leading-relaxed tracking-widest text-neutral-400 dark:text-neutral-500">
               <div className="uppercase mx-auto tracking-[0.4em] text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-500/80 dark:text-neutral-400/70">
-                Technology as a{isSm ? <></> : <br />}
+                Technology as a
+                <br className="sm:hidden" />
                 <FlipWords words={['bridge', 'string', 'knot']} duration={2500} />
               </div>
             </motion.div>
@@ -91,14 +78,11 @@ export default function Home() {
                 hidden: { opacity: 0, y: 8 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
               }}
-              className={cn(
-                'text-base italic font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase leading-relaxed',
-                inter.className,
-              )}>
+              className="text-base italic font-medium uppercase leading-relaxed tracking-widest text-neutral-400 dark:text-neutral-500">
               <TextGenerateEffect
                 words={'Connect. Build. Impact.'}
                 duration={1}
-                textClassName={`${space.className} text-lg sm:text-xl font-medium tracking-[0.08em]`}
+                textClassName="text-lg sm:text-xl font-medium tracking-[0.08em]"
               />
             </motion.div>
 

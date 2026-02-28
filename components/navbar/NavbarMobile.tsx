@@ -63,8 +63,8 @@ export function NavbarMobile() {
 
       <div
         className={cn(
-          'lg:hidden fixed justify-center top-4 left-1/2 -translate-x-1/2 z-9999 w-1/3',
-          open ? 'w-full' : 'w-57',
+          'fixed top-4 left-1/2 z-[9999] w-1/3 -translate-x-1/2 justify-center lg:hidden',
+          open ? 'w-full' : 'w-[14.25rem]',
         )}
         ref={ref}>
         <motion.div
