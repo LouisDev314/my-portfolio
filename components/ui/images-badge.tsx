@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { motion } from "motion/react";
-import { cn } from "@/lib/utils";
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface ImagesBadgeProps {
   text: string;
@@ -48,29 +49,24 @@ export function ImagesBadge({
   const tabWidth = folderSize.width * 0.375;
   const tabHeight = folderSize.height * 0.25;
 
-  const Component = href ? "a" : "div";
+  const Component = href ? 'a' : 'div';
 
   return (
     <Component
       href={href}
       target={target}
-      rel={target === "_blank" ? "noopener noreferrer" : undefined}
-      className={cn(
-        "inline-flex cursor-pointer items-center gap-2 perspective-[1000px] transform-3d",
-        className,
-      )}
+      rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+      className={cn('inline-flex cursor-pointer items-center gap-2 perspective-[1000px] transform-3d', className)}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+      onMouseLeave={() => setIsHovered(false)}>
       {/* Folder Container */}
       <motion.div
         className="relative"
         style={{
           width: folderSize.width,
           height: folderSize.height,
-          transformStyle: "preserve-3d",
-        }}
-      >
+          transformStyle: 'preserve-3d',
+        }}>
         {/* Folder Back */}
         <div className="absolute inset-0 rounded-[4px] bg-gradient-to-b from-amber-400 to-amber-500 shadow-sm dark:from-amber-500 dark:to-amber-600">
           {/* Folder Tab */}
@@ -90,29 +86,16 @@ export function ImagesBadge({
 
           // Calculate rotation based on index
           const baseRotation =
-            totalImages === 1
-              ? 0
-              : totalImages === 2
-                ? (index - 0.5) * hoverRotation
-                : (index - 1) * hoverRotation;
+            totalImages === 1 ? 0 : totalImages === 2 ? (index - 0.5) * hoverRotation : (index - 1) * hoverRotation;
 
           // Hover positions - fan out
           const hoverY = hoverTranslateY - (totalImages - 1 - index) * 3;
           const hoverX =
-            totalImages === 1
-              ? 0
-              : totalImages === 2
-                ? (index - 0.5) * hoverSpread
-                : (index - 1) * hoverSpread;
+            totalImages === 1 ? 0 : totalImages === 2 ? (index - 0.5) * hoverSpread : (index - 1) * hoverSpread;
 
           // Teaser positions - slight peek from folder
           const teaseY = -4 - (totalImages - 1 - index) * 1;
-          const teaseRotation =
-            totalImages === 1
-              ? 0
-              : totalImages === 2
-                ? (index - 0.5) * 3
-                : (index - 1) * 3;
+          const teaseRotation = totalImages === 1 ? 0 : totalImages === 2 ? (index - 0.5) * 3 : (index - 1) * 3;
 
           return (
             <motion.div
@@ -123,25 +106,19 @@ export function ImagesBadge({
                 y: isHovered ? hoverY : teaseY,
                 rotate: isHovered ? baseRotation : teaseRotation,
                 width: isHovered ? hoverImageSize.width : teaserImageSize.width,
-                height: isHovered
-                  ? hoverImageSize.height
-                  : teaserImageSize.height,
+                height: isHovered ? hoverImageSize.height : teaserImageSize.height,
               }}
               transition={{
-                type: "spring",
+                type: 'spring',
                 stiffness: 400,
                 damping: 25,
                 delay: index * 0.03,
               }}
               style={{
                 zIndex: 10 + index,
-              }}
-            >
-              <img
-                src={image}
-                alt={`Preview ${index + 1}`}
-                className="h-full w-full object-cover"
-              />
+              }}>
+              {/*<img src={image} alt={`Preview ${index + 1}`} className="h-full w-full object-cover" />*/}
+              <Image src={image} alt={`Preview ${index + 1}`} height={400} width={400} objectPosition="cover" />
             </motion.div>
           );
         })}
@@ -154,24 +131,21 @@ export function ImagesBadge({
             scaleY: isHovered ? 0.8 : 1,
           }}
           transition={{
-            type: "spring",
+            type: 'spring',
             stiffness: 400,
             damping: 25,
           }}
           style={{
-            transformStyle: "preserve-3d",
+            transformStyle: 'preserve-3d',
             zIndex: 20,
-          }}
-        >
+          }}>
           {/* Folder line detail */}
           <div className="absolute top-1 right-1 left-1 h-px bg-amber-200/50 dark:bg-amber-300/50" />
         </motion.div>
       </motion.div>
 
       {/* Text */}
-      <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
-        {text}
-      </span>
+      <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{text}</span>
     </Component>
   );
 }
