@@ -12,13 +12,25 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: '1',
-    name: 'PopBox Studio (Upcoming)',
-    description: 'Full-stack shopping platform with real-time inventory, Stripe payments, and an admin dashboard.',
-    imgUrl: '/GT.webp',
-    techs: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'],
-    liveUrl: 'https://example.com',
-    demoUrl: 'https://youtube.com',
-    repoUrl: 'https://github.com/louischan/ecommerce',
+    name: 'Paper Bridge',
+    description:
+      'Full-stack AI document intelligence system with PDF ingestion, schema-enforced extraction, vector search (pgvector), and citation-grounded multi-document Q&A. Designed as a production-ready internal tool.',
+    imgUrl: '/paper-bridge-logo.webp',
+    techs: [
+      'Python',
+      'FastAPI',
+      'Next.js',
+      'TypeScript',
+      'PostgreSQL',
+      'pgvector',
+      'Supabase',
+      'OpenAI API',
+      'Embeddings',
+      'RAG',
+    ],
+    liveUrl: 'https://paper-bridge.vercel.app/dashboard',
+    demoUrl: 'https://youtube.com', // replace if you have a walkthrough
+    repoUrl: 'https://github.com/LouisDev314/paper-bridge',
   },
   {
     id: '2',

@@ -83,11 +83,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         }
       }}>
       {/* Image */}
-      <div className="relative h-48 overflow-hidden bg-linear-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center">
-        {/*<span className="text-4xl font-bold text-neutral-300 dark:text-neutral-600 group-hover:scale-110 transition-transform duration-500 select-none">*/}
-        {/*  {project.name.charAt(0)}*/}
-        {/*</span>*/}
-        <Image src={project.imgUrl} alt="Project Image" width={300} height={300} />
+      <div className="relative h-48 overflow-hidden">
+        <Image
+          src={project.imgUrl}
+          alt={project.name}
+          fill
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
       </div>
 
       {/* Content */}

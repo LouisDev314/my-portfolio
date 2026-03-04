@@ -168,11 +168,7 @@ export default function Home() {
                 <ImagesBadge
                   text="View all →"
                   className="hover:underline"
-                  images={[
-                    'https://assets.aceternity.com/pro/agenforce-1.webp',
-                    'https://assets.aceternity.com/pro/agenforce-2.webp',
-                    'https://assets.aceternity.com/pro/agenforce-3.webp',
-                  ]}
+                  images={['/paper-bridge-logo.webp', '/paper-bridge-logo.webp', '/paper-bridge-logo.webp']}
                   folderSize={{ width: 24, height: 18 }}
                   teaserImageSize={{ width: 14, height: 10 }}
                   hoverImageSize={{ width: 36, height: 24 }}
