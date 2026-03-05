@@ -29,7 +29,7 @@ export const projects: Project[] = [
       'RAG',
     ],
     liveUrl: 'https://paper-bridge.vercel.app/dashboard',
-    demoUrl: 'https://youtube.com', // replace if you have a walkthrough
+    demoUrl: 'https://youtu.be/3FmdrRM75Io',
     repoUrl: 'https://github.com/LouisDev314/paper-bridge',
   },
   {

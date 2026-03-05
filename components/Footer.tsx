@@ -36,9 +36,9 @@ const footerGroups: FooterGroup[] = [
   {
     title: 'Projects',
     links: [
-      { label: 'Project 1', href: 'https://example.com', external: true }, // Placeholder
-      { label: 'Project 2', href: 'https://example.com', external: true }, // Placeholder
-      { label: 'Project 3', href: 'https://example.com', external: true }, // Placeholder
+      { label: 'Paper Bridge', href: 'https://paper-bridge.vercel.app/dashboard', external: true },
+      { label: 'Project 2', href: 'https://example.com', external: true },
+      { label: 'Project 3', href: 'https://example.com', external: true },
     ],
   },
   {

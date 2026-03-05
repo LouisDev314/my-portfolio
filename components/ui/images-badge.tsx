@@ -118,7 +118,7 @@ export function ImagesBadge({
                 zIndex: 10 + index,
               }}>
               {/*<img src={image} alt={`Preview ${index + 1}`} className="h-full w-full object-cover" />*/}
-              <Image src={image} alt={`Preview ${index + 1}`} height={400} width={400} objectPosition="cover" />
+              <Image src={image} alt={`Preview ${index + 1}`} height={400} width={400} />
             </motion.div>
           );
         })}
