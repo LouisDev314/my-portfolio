@@ -3,7 +3,7 @@
 import React from 'react';
 import { Project } from '@/lib/projects';
 import Badge from 'components/Badge';
-import { motion } from 'motion/react';
+import { motion, useAnimationControls } from 'motion/react';
 import GitHubIcon from '@/assets/icons/github-icon';
 import YoutubeIcon from '@/assets/icons/youtube-icon';
 import Image from 'next/image';
@@ -14,6 +14,9 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const shouldOpenOnReleaseRef = React.useRef(false);
+  const isHoveringRef = React.useRef(false);
+
+  const controls = useAnimationControls();
 
   const isFromInteractiveChild = (target: EventTarget | null) => {
     const el = target as HTMLElement | null;
@@ -25,10 +28,51 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
   };
 
+  const setRest = React.useCallback(() => {
+    controls.start({ y: 0, scale: 1 });
+  }, [controls]);
+
+  const setHover = React.useCallback(() => {
+    controls.start({ y: -4, scale: 1 });
+  }, [controls]);
+
+  const setPressed = React.useCallback(() => {
+    controls.start({ y: -4, scale: 0.97 });
+  }, [controls]);
+
+  // 🔒 Hard reset when leaving/returning to tab (prevents “stuck hover/pressed”)
+  React.useEffect(() => {
+    const onBlur = () => {
+      isHoveringRef.current = false;
+      shouldOpenOnReleaseRef.current = false;
+      setRest();
+    };
+
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        isHoveringRef.current = false;
+        shouldOpenOnReleaseRef.current = false;
+        setRest();
+      }
+    };
+
+    window.addEventListener('blur', onBlur);
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      window.removeEventListener('blur', onBlur);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [setRest]);
+
   const stopCardNav = (e: React.SyntheticEvent) => {
     e.stopPropagation();
-    // also block the "release-to-open" behavior
     shouldOpenOnReleaseRef.current = false;
+
+    // Ensure we never remain pressed when clicking the link
+    // Keep hover if the pointer is still on the card.
+    if (isHoveringRef.current) setHover();
+    else setRest();
   };
 
   return (
@@ -39,46 +83,58 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         hover:shadow-lg dark:hover:shadow-neutral-900/50
         will-change-transform
       "
-      // Smooth animations that START immediately (no delay)
+      initial={{ y: 0, scale: 1 }}
+      animate={controls}
       transition={{
-        // hover lift: smooth, no delay
         y: { type: 'tween', ease: 'easeOut', duration: 0.18 },
-        // press scale: quicker so it feels responsive
         scale: { type: 'tween', ease: 'easeOut', duration: 0.08 },
       }}
-      whileHover={{ y: -4 }}
-      whileTap={{ scale: 0.97 }}
+      onPointerEnter={() => {
+        isHoveringRef.current = true;
+        setHover();
+      }}
+      onPointerLeave={() => {
+        isHoveringRef.current = false;
+        shouldOpenOnReleaseRef.current = false;
+        setRest();
+      }}
       onPointerDown={(e) => {
         // primary button only (left click)
         if ('button' in e && e.button !== 0) return;
 
-        // Don't open if press starts on links/buttons inside
-        shouldOpenOnReleaseRef.current = !isFromInteractiveChild(e.target);
+        const fromChild = isFromInteractiveChild(e.target);
+        shouldOpenOnReleaseRef.current = !fromChild;
+
+        // only press-animate if it started on the card, not on links/buttons
+        if (!fromChild) setPressed();
       }}
       onPointerUp={(e) => {
+        const fromChild = isFromInteractiveChild(e.target);
+
+        // return to hover/rest depending on pointer still being in card
+        if (isHoveringRef.current) setHover();
+        else setRest();
+
         if (!shouldOpenOnReleaseRef.current) return;
         shouldOpenOnReleaseRef.current = false;
 
-        // If release happens on an interactive child, ignore
-        if (isFromInteractiveChild(e.target)) return;
-
+        if (fromChild) return;
         openLive();
       }}
       onPointerCancel={() => {
         shouldOpenOnReleaseRef.current = false;
-      }}
-      onPointerLeave={() => {
-        // press + drag out cancels navigation
-        shouldOpenOnReleaseRef.current = false;
+        if (isHoveringRef.current) setHover();
+        else setRest();
       }}
       role="link"
       tabIndex={0}
       aria-label={`${project.name}${project.liveUrl ? ' (opens in new tab)' : ''}`}
       onKeyDown={(e) => {
-        // keyboard accessibility: Enter/Space triggers open
         if (!project.liveUrl) return;
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          // keyboard shouldn’t leave it “hover lifted”
+          setRest();
           openLive();
         }
       }}>
