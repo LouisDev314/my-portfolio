@@ -27,6 +27,12 @@ import UnrealIcon from '@/assets/icons/unreal-icon';
 import UnityIcon from '@/assets/icons/unity-icon';
 import KafkaIcon from '@/assets/icons/kafka-icon';
 import RabbitMQIcon from '@/assets/icons/rabbitmq-icon';
+import FlutterIcon from '@/assets/icons/flutter-icon';
+import VercelIcon from '@/assets/icons/vercel-icon';
+import NestJSIcon from '@/assets/icons/nestjs-icon';
+import ExpressIcon from '@/assets/icons/express-icon';
+import DrizzleIcon from '@/assets/icons/drizzle-icon';
+import SupabaseIcon from '@/assets/icons/supabase-icon';
 
 export default function TechStackChips() {
   const TECH_CATEGORIES = [
@@ -40,17 +46,20 @@ export default function TechStackChips() {
         { title: 'Expo', icon: <ExpoIcon className="size-4 fill-[#1C2024] dark:fill-white" /> },
         { title: 'TanStack', icon: <TanStackIcon className="size-4 fill-black dark:fill-white" /> },
         { title: 'Typescript', icon: <TSIcon className="size-4 fill-[#3178C6]" /> },
+        { title: 'Flutter', icon: <FlutterIcon className="size-4 fill-[#02569B]" /> },
       ],
     },
     {
       title: 'Backend',
       techs: [
         { title: 'Node.js', icon: <NodeIcon className="size-4 fill-[#5FA04E]" /> },
+        { title: 'Express.js', icon: <ExpressIcon className="size-4 fill-black dark:fill-white" /> },
+        { title: 'Nest.js', icon: <NestJSIcon className="size-4 fill-[#E0234E]" /> },
         { title: 'Zod', icon: <ZodIcon className="size-4 fill-[#408AFF]" /> },
+        { title: 'Drizzle', icon: <DrizzleIcon className="size-4 fill-[#C5F74F]" /> },
         { title: 'Prisma', icon: <PrismaIcon className="size-4 fill-[#2D3748] dark:fill-white" /> },
         { title: 'Java Spring Boot', icon: <SpringBootIcon className="size-4 fill-[#6DB33F]" /> },
         { title: 'Apache Kafka', icon: <KafkaIcon className="size-4 fill-[#231F20] dark:fill-white" /> },
-        { title: 'RabbitMQ', icon: <RabbitMQIcon className="size-4 fill-[#FF6600]" /> },
         { title: 'Python FastAPI', icon: <FastAPIIcon className="size-4 fill-[#009688]" /> },
       ],
     },
@@ -60,13 +69,14 @@ export default function TechStackChips() {
         { title: 'PostgreSQL', icon: <PostgreSQLIcon className="size-4 fill-[#4169E1]" /> },
         { title: 'MongoDB', icon: <MongoIcon className="size-4 fill-[#47A248]" /> },
         { title: 'Redis', icon: <RedisIcon className="size-4 fill-[#FF4438]" /> },
+        { title: 'Supabase', icon: <SupabaseIcon className="size-4 fill-[#3FCF8E]" /> },
       ],
     },
     {
       title: 'DevOps / Infra',
       techs: [
         { title: 'Render', icon: <RenderIcon className="size-4 fill-black dark:fill-white" /> },
-        { title: 'Solid.js', icon: <DockerIcon className="size-4 fill-[#2496ED]" /> },
+        { title: 'Vercel', icon: <VercelIcon className="size-4 fill-black dark:fill-white" /> },
         { title: 'Git', icon: <GitIcon className="size-4 fill-[#F05032]" /> },
         { title: 'GitHub Actions', icon: <GitHubActionsIcon className="size-4 fill-[#2088FF]" /> },
         { title: 'GitLab', icon: <GitLabIcon className="size-4 fill-[#FC6D26]" /> },
