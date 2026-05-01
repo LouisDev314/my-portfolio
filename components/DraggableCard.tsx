@@ -32,16 +32,18 @@ export function DraggableCard() {
     },
   ];
   return (
-    <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
+    <DraggableCardContainer className="relative flex min-h-[48rem] w-full items-center justify-center overflow-hidden sm:min-h-screen">
       <WorldMapSection />
       {items.map((item, index) => (
         <DraggableCardBody className={item.className} key={index}>
           <Image
             src={item.image}
             alt={item.title}
-            width={500}
-            height={800}
-            className="pointer-events-none relative size-80 z-10 object-cover"
+            width={320}
+            height={320}
+            sizes="(max-width: 640px) 256px, 320px"
+            loading="lazy"
+            className="pointer-events-none relative z-10 size-64 object-cover sm:size-80"
           />
           <h3 className="mt-4 text-center text-xl font-bold text-neutral-700 dark:text-neutral-300 whitespace-pre-line">
             {item.title}

@@ -26,7 +26,6 @@ import PandasIcon from '@/assets/icons/pandas-icon';
 import UnrealIcon from '@/assets/icons/unreal-icon';
 import UnityIcon from '@/assets/icons/unity-icon';
 import KafkaIcon from '@/assets/icons/kafka-icon';
-import RabbitMQIcon from '@/assets/icons/rabbitmq-icon';
 import FlutterIcon from '@/assets/icons/flutter-icon';
 import VercelIcon from '@/assets/icons/vercel-icon';
 import NestJSIcon from '@/assets/icons/nestjs-icon';

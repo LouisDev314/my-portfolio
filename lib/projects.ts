@@ -40,7 +40,6 @@ export const projects: Project[] = [
     imgUrl: '/store-logo.jpeg',
     techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Stripe', 'Vercel'],
     liveUrl: 'https://www.popboxstudio.com/',
-    demoUrl: '',
     repoUrl: 'https://github.com/LouisDev314/popbox-studio-next',
   },
 ];

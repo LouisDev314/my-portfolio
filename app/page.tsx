@@ -48,9 +48,12 @@ export default function Home() {
       <main className="mx-auto max-w-7xl px-6 pt-28">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
         <section className="mt-24 sm:mt-48 lg:mt-40 mb-16 flex flex-col items-center text-center">
-          <h1 className="mb-6 text-[clamp(6rem,18vw,16rem)] font-black leading-[0.8] tracking-[-0.07em] break-words text-neutral-900 dark:text-neutral-100">
+          <h1 className="mb-8 text-[clamp(6rem,18vw,16rem)] font-black leading-[0.8] tracking-[-0.07em] break-words text-neutral-900 dark:text-neutral-100">
             Louis
           </h1>
+          <p className="text-lg font-semibold uppercase tracking-[0.24em] text-neutral-600 dark:text-neutral-300 sm:text-xl">
+            Full Stack Developer
+          </p>
 
           <motion.div
             initial="hidden"
@@ -65,7 +68,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 8 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
               }}
-              className="mt-8 text-xl font-medium uppercase leading-relaxed tracking-widest text-neutral-400 dark:text-neutral-500">
+              className="mt-12 text-xl font-medium uppercase leading-relaxed tracking-widest text-neutral-400 dark:text-neutral-500">
               <div className="uppercase mx-auto tracking-[0.4em] text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-500/80 dark:text-neutral-400/70">
                 Technology as a
                 <br className="sm:hidden" />

@@ -8,6 +8,7 @@ import { Home, ExternalLink, User, Code, FileText, Handshake, ScrollText } from 
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import ThemeToggleBtn from '@/components/ThemeToggleBtn';
+import { siteConfig } from '@/lib/site';
 
 const NAV_SECTIONS = [
   {
@@ -87,10 +88,11 @@ export function NavbarMobile() {
               <div className="size-8">
                 <Image
                   src="/portfolio-logo.webp"
-                  alt="My PNG image"
-                  width={500}
-                  height={300}
-                  className="rounded-full border border-amber-400 dark:border-0"
+                  alt="Louis Chan portfolio logo"
+                  width={32}
+                  height={32}
+                  priority
+                  className="size-8 rounded-full border border-amber-400 object-cover dark:border-0"
                 />
               </div>
 
@@ -154,9 +156,10 @@ export function NavbarMobile() {
                   {/* Spacer + CTA */}
                   <div className="space-y-1.5 mt-2 mb-3">
                     <a
-                      href="https://www.linkedin.com/in/lcch/"
+                      href={siteConfig.links.linkedIn}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Connect with Louis Chan on LinkedIn (opens in a new tab)"
                       onClick={() => setOpen(false)}
                       className="flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 transition-colors">
                       <div className="flex flex-row items-center">
