@@ -77,6 +77,7 @@ export default function TechStackChips() {
       techs: [
         { title: 'Render', icon: <RenderIcon className="size-4 fill-black dark:fill-white" /> },
         { title: 'Vercel', icon: <VercelIcon className="size-4 fill-black dark:fill-white" /> },
+        { title: 'Docker', icon: <DockerIcon className="size-4 fill-[#2496ED]" /> },
         { title: 'Git', icon: <GitIcon className="size-4 fill-[#F05032]" /> },
         { title: 'GitHub Actions', icon: <GitHubActionsIcon className="size-4 fill-[#2088FF]" /> },
         { title: 'GitLab', icon: <GitLabIcon className="size-4 fill-[#FC6D26]" /> },
