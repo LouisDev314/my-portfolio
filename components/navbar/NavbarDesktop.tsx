@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { ExternalLink, ChevronDown } from 'lucide-react';
 import { Navbar, NavBody } from '@/components/ui/resizable-navbar';
@@ -23,7 +23,6 @@ const SECONDARY_NAV_ITEMS = [
 
 export function NavbarDesktop() {
   const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <div className="hidden lg:block w-full">
@@ -55,10 +54,6 @@ export function NavbarDesktop() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    router.push(item.href);
-                  }}
                   className={cn(
                     'px-3 py-1.5 text-sm rounded-full transition-colors font-medium whitespace-nowrap relative',
                     isActive
@@ -83,10 +78,6 @@ export function NavbarDesktop() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        router.push(item.href);
-                      }}
                       className="px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-300 whitespace-nowrap transition-colors">
                       {item.name}
                     </Link>

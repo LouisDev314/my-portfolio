@@ -2,6 +2,7 @@ export interface Project {
   id: string;
   name: string;
   description: string;
+  highlights?: string[];
   imgUrl: string;
   techs: string[];
   liveUrl?: string;
@@ -14,7 +15,12 @@ export const projects: Project[] = [
     id: '1',
     name: 'Paper Bridge',
     description:
-      'Full-stack AI document intelligence system with PDF ingestion, schema-enforced extraction, vector search (pgvector), and citation-grounded multi-document Q&A. Designed as a production-ready internal tool.',
+      'AI/RAG document intelligence platform for extracting, searching, and asking grounded questions across PDFs.',
+    highlights: [
+      'PDF ingestion with schema-enforced extraction',
+      'pgvector retrieval and citation-grounded Q&A',
+      'FastAPI backend architecture for production workflows',
+    ],
     imgUrl: '/paper-bridge-logo.webp',
     techs: [
       'Python',
@@ -36,7 +42,12 @@ export const projects: Project[] = [
     id: '2',
     name: 'PopBox Studio',
     description:
-      'Full-stack e-commerce platform for anime collectibles with SSR storefront pages, Stripe payments, guest checkout, inventory reservations, admin workflows, and production-ready order management.',
+      'Production anime collectibles commerce platform with a real storefront, checkout, inventory, and admin flow.',
+    highlights: [
+      'SSR storefront with Stripe checkout and guest checkout',
+      'Inventory reservations backed by PostgreSQL/Supabase',
+      'Admin workflows for production-ready order management',
+    ],
     imgUrl: '/store-logo.jpeg',
     techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Stripe', 'Vercel'],
     liveUrl: 'https://www.popboxstudio.com/',

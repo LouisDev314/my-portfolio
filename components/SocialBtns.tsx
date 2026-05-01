@@ -1,3 +1,5 @@
+'use client';
+
 import GitHubIcon from '@/assets/icons/github-icon';
 import WhatsAppIcon from '@/assets/icons/whatsapp-icon';
 import TelegramIcon from '@/assets/icons/telegram-icon';

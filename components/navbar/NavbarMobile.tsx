@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Home, ExternalLink, User, Code, FileText, Handshake, ScrollText } from 'lucide-react';
@@ -30,7 +30,6 @@ const NAV_SECTIONS = [
 export function NavbarMobile() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
   // Close on ESC
@@ -76,32 +75,29 @@ export function NavbarMobile() {
             open ? 'mx-4 rounded-3xl' : 'mx-0 rounded-full',
           )}>
           {/* Pill header — always visible */}
-          <div
-            onClick={() => setOpen((v) => !v)}
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpen((v) => !v)}
-            role="button"
-            tabIndex={0}
-            className="flex h-12 cursor-pointer items-center justify-between px-4 py-6 outline-none"
-            aria-expanded={open}
-            aria-label="Toggle navigation menu">
+          <div className="flex h-12 items-center justify-between px-4 py-6">
             <div className="flex gap-3 justify-between items-center w-full">
-              <div className="size-8">
-                <Image
-                  src="/portfolio-logo.webp"
-                  alt="Louis Chan portfolio logo"
-                  width={32}
-                  height={32}
-                  priority
-                  className="size-8 rounded-full border border-amber-400 object-cover dark:border-0"
-                />
-              </div>
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                className="flex flex-1 items-center gap-3 rounded-full text-left outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+                aria-expanded={open}
+                aria-label="Toggle navigation menu">
+                <span className="size-8">
+                  <Image
+                    src="/portfolio-logo.webp"
+                    alt="Louis Chan portfolio logo"
+                    width={32}
+                    height={32}
+                    priority
+                    className="size-8 rounded-full border border-amber-400 object-cover dark:border-0"
+                  />
+                </span>
 
-              <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>
+                <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>
+              </button>
 
-              {/* Theme toggle — stop propagation so it doesn't toggle the drawer */}
-              <div onClick={(e) => e.stopPropagation()}>
-                <ThemeToggleBtn />
-              </div>
+              <ThemeToggleBtn />
             </div>
           </div>
 
@@ -123,21 +119,11 @@ export function NavbarMobile() {
                         const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
                         const Icon = item.icon;
 
-                        const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-                          e.preventDefault();
-                          if (pathname === item.href) {
-                            setOpen(false);
-                            return;
-                          }
-                          setOpen(false);
-                          router.push(item.href); // Immediately map routing
-                        };
-
                         return (
                           <Link
                             key={item.href}
                             href={item.href}
-                            onClick={handleNavClick}
+                            onClick={() => setOpen(false)}
                             className={cn(
                               'flex items-center gap-3 rounded-xl h-12 mb-1 px-4 py-2 text-sm transition-colors',
                               isActive

@@ -1,12 +1,10 @@
-'use client';
-
 import { Project } from '@/lib/projects';
 import Badge from 'components/Badge';
-import { motion, useReducedMotion } from 'motion/react';
 import GitHubIcon from '@/assets/icons/github-icon';
 import YoutubeIcon from '@/assets/icons/youtube-icon';
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
+import { ProjectCardMotionShell } from '@/components/ProjectCardMotionShell';
 import type { ReactNode } from 'react';
 
 interface ProjectCardProps {
@@ -21,7 +19,6 @@ type ProjectAction = {
 };
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const prefersReducedMotion = useReducedMotion();
   const actions: ProjectAction[] = [];
 
   if (project.liveUrl) {
@@ -52,11 +49,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   }
 
   return (
-    <motion.article
-      className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900 dark:hover:shadow-neutral-900/50 motion-safe:hover:shadow-lg"
-      whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-      whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-      transition={{ type: 'tween', ease: 'easeOut', duration: 0.18 }}>
+    <ProjectCardMotionShell>
       <div className="relative h-48 overflow-hidden">
         <Image
           src={project.imgUrl}
@@ -64,6 +57,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           fill
           className="object-cover object-top"
           sizes="(max-width: 768px) 100vw, 33vw"
+          loading="lazy"
         />
       </div>
 
@@ -97,6 +91,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
         )}
       </div>
-    </motion.article>
+    </ProjectCardMotionShell>
   );
 }

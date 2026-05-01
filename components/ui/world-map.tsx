@@ -59,11 +59,11 @@ export default function WorldMap({ dots = [], lineColor = '#0ea5e9' }: MapProps)
         <Image
           src={src}
           alt="world map"
-          height={495}
-          width={1056}
+          fill
+          sizes="(max-width: 768px) 100vw, 1056px"
           draggable={false}
           unoptimized
-          className="h-full w-full mask-[linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none"
+          className="mask-[linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none object-fill"
         />
       ) : (
         <div className="h-full w-full" />

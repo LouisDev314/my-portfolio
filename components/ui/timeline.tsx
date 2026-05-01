@@ -44,7 +44,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.01], [1, 1]);
 
   return (
-    <div className="w-full font-sans md:px-10" ref={containerRef}>
+    <div className="relative w-full font-sans md:px-10" ref={containerRef} style={{ position: 'relative' }}>
       <div ref={ref} className="relative max-w-7xl mx-auto">
         <motion.div
           style={{
@@ -58,6 +58,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               alt="profile picture"
               fill
               draggable={false}
+              sizes="40px"
               className="object-cover rounded-full border-2"
             />
           </div>
