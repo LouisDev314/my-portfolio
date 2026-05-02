@@ -48,34 +48,91 @@ function CompanyHeader({
 export function WorkTimeline() {
   const data = [
     {
-      title: 'September 2024 - Present',
+      title: 'March 2026 - Present',
       content: (
-        <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
+        <div
+          key="popbox-studio"
+          className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
           <CompanyHeader
             company="PopBox Studio"
             companyUrl="https://popboxstudio.com/"
-            location="Calgary, Canada"
-            role="Co-Founder · AI Automation & Full Stack Engineer"
+            location="Calgary, AB"
+            role="Founder & Full Stack Engineer"
             workType="Remote"
           />
 
           <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200">
-            Built a scalable, containerized mobile e-commerce platform with secure backend services. Developed optimized
-            React Native interfaces and integrated LLM-powered features using LangChain and RAG for product automation,
-            support, and data extraction with production-ready validation and error handling.
+            Built a production-ready e-commerce platform for anime collectibles with a server-rendered storefront,
+            Stripe checkout, and a complete order lifecycle. Implemented inventory reservation, guest checkout, and
+            admin workflows for products, orders, and fulfillment. Designed a scalable PostgreSQL/Supabase backend with
+            strong validation, idempotent order handling, and reliable payment integration.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-1.5">
-            <Badge title="LLM APIs" hasAnim={false} />
+            <Badge title="Next.js" hasAnim={false} />
+            <Badge title="Tailwind CSS" hasAnim={false} />
+            <Badge title="Vercel" hasAnim={false} />
             <Badge title="Node.js" hasAnim={false} />
-            <Badge title="MongoDB" hasAnim={false} />
-            <Badge title="Docker" hasAnim={false} />
+            <Badge title="Express" hasAnim={false} />
             <Badge title="TypeScript" hasAnim={false} />
+            <Badge title="PostgreSQL" hasAnim={false} />
+            <Badge title="Supabase" hasAnim={false} />
+            <Badge title="Docker" hasAnim={false} />
             <Badge title="Stripe" hasAnim={false} />
-            <Badge title="Redis" hasAnim={false} />
             <Badge title="GitHub Actions (CI/CD)" hasAnim={false} />
-            <Badge title="React Native" hasAnim={false} />
             <Badge title="TanStack Query" hasAnim={false} />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: 'March 2025 - March 2026',
+      content: (
+        <div
+          key="bmo"
+          className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
+          <CompanyHeader
+            company="Bank of Montreal"
+            companyUrl="https://www.bmo.com/en-ca/main/personal/"
+            location="Calgary, AB"
+            role="Personal Banking Associate"
+            workType="On-site"
+          />
+
+          <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200">
+            Analyzed client financial data and requirements to support lending and credit workflows in a high-volume
+            banking environment. Ensured accurate processing and compliance with risk controls while coordinating across
+            internal systems and stakeholders. Applied structured problem-solving to improve workflow efficiency and
+            decision accuracy in time-sensitive, production-like conditions.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: 'September 2024 - March 2025',
+      content: (
+        <div
+          key="earn-alliance"
+          className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
+          <CompanyHeader
+            company="Earn Alliance"
+            companyUrl="https://litepaper.earnalliance.com/"
+            location="Hong Kong"
+            role="Project Manager"
+            workType="Remote"
+          />
+
+          <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200">
+            Led Agile delivery across cross-functional teams, translating product requirements into actionable technical
+            tasks and coordinating execution through tools like Jira and Asana. Identified and resolved production
+            bottlenecks, improving team productivity by 120% and increasing user retention by 35%. Worked closely with
+            engineers and stakeholders to ensure reliable delivery, clear prioritization, and efficient iteration in a
+            fast-paced environment.
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            <Badge title="JIRA" hasAnim={false} />
+            <Badge title="Asana" hasAnim={false} />
           </div>
         </div>
       ),
@@ -83,7 +140,9 @@ export function WorkTimeline() {
     {
       title: 'August 2023 - September 2024',
       content: (
-        <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
+        <div
+          key="vgt"
+          className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
           <CompanyHeader
             company="Virtual Gaming Technology"
             companyUrl="https://www.vgt.com.hk/en/"
@@ -93,80 +152,84 @@ export function WorkTimeline() {
           />
 
           <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200">
-            Designed and built microservices with event-driven processing to handle high-volume real-time data. Improved
-            data efficiency by 50% and doubled global processing throughput. Revamped frontend architecture, achieving
-            350% faster rendering and smoother user experiences. Optimized system performance and stability by 80%,
-            supporting 100k+ concurrent users.
+            Designed and built distributed backend services using Java Spring Boot in an event-driven architecture to
+            process high-volume real-time data at scale. Integrated Kafka-based asynchronous messaging to improve system
+            reliability and decouple services for efficient background processing. Revamped frontend architecture and
+            migrated components to SolidJS, achieving up to 350% faster rendering and significantly smoother user
+            experiences. Optimized system performance and stability, supporting over 100k concurrent users in
+            production.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-1.5">
             <Badge title="Java Spring Boot" hasAnim={false} />
-            <Badge title="RabbitMQ" hasAnim={false} />
+            <Badge title="SQL" hasAnim={false} />
             <Badge title="Apache Kafka" hasAnim={false} />
-            <Badge title="SQL/NoSQL" hasAnim={false} />
-            <Badge title="React.js" hasAnim={false} />
-            <Badge title="Solid.js" hasAnim={false} />
+            <Badge title="Event-Driven Architecture" hasAnim={false} />
+            <Badge title="Distributed Systems" hasAnim={false} />
+            <Badge title="SolidJS" hasAnim={false} />
             <Badge title="Tailwind CSS" hasAnim={false} />
             <Badge title="GitLab CI/CD" hasAnim={false} />
-            <Badge title="Elasticsearch + Kibana" hasAnim={false} />
           </div>
         </div>
       ),
     },
     {
-      title: 'September - December 2022',
+      title: 'September 2022 - December 2022',
       content: (
-        <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
+        <div
+          key="future-successors"
+          className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
           <CompanyHeader
             company="Future Successors"
             companyUrl="https://futuresuccessors.org/"
-            location="Atlanta, United States"
+            location="Atlanta, GA"
             role="Software Engineer Intern"
             workType="Remote/On-site"
           />
 
           <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200">
-            Built backend services and integrated cloud-based workflows with automated CI/CD pipelines. Optimized data
-            modeling to improve performance by 50% while ensuring strong data reliability through validation and error
-            handling. Collaborated with cross-functional teams to deliver production-ready solutions aligned with
-            business needs.
+            Built backend APIs using FastAPI to support secure communication between frontend and cloud services.
+            Designed and optimized data models and database queries, improving performance by 50% while ensuring data
+            integrity through validation and error handling. Integrated AWS-based workflows and CI/CD pipelines to
+            streamline deployment and support reliable, production-ready feature delivery.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-1.5">
-            <Badge title="Python FastAPI" hasAnim={false} />
-            <Badge title="AWS Lambda" hasAnim={false} />
-            <Badge title="Amazon S3" hasAnim={false} />
-            <Badge title="GitHub Actions (CI/CD)" hasAnim={false} />
-            <Badge title="Vue.js" hasAnim={false} />
+            <Badge title="Node.js" hasAnim={false} />
+            <Badge title="Express" hasAnim={false} />
+            <Badge title="React Native" hasAnim={false} />
+            <Badge title="MongoDB" hasAnim={false} />
+            <Badge title="NoSQL" hasAnim={false} />
           </div>
         </div>
       ),
     },
     {
-      title: 'June - September 2022',
+      title: 'June 2022 - September 2022',
       content: (
-        <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
+        <div
+          key="microsoft"
+          className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 md:p-7">
           <CompanyHeader
             company="Microsoft"
             companyUrl="https://www.xbox.com/en-US/xbox-game-studios/game-camp"
-            location="Atlanta, United States"
+            location="Atlanta, GA"
             role="Xbox Summer Camp Engineer"
             workType="Remote/On-site"
           />
 
           <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200">
-            Developed real-time gameplay systems in Unreal Engine for state management, synchronization, and user
-            interactions, ensuring low-latency performance under dynamic conditions. Leveraged Azure to deploy and scale
-            backend services for stable online experiences. Led a team of engineers, establishing coding standards and
-            workflows to improve code quality and delivery speed, while rapidly prototyping and iterating in an agile
-            environment.
+            Built a complete gameplay project in Unreal Engine 5 using C++ and Blueprint, implementing core systems for
+            state management and player interactions. Led a team of three engineers, establishing Git workflows, coding
+            standards, and code review practices to improve code quality and team efficiency. Rapidly prototyped and
+            iterated on gameplay features in an agile environment, delivering a polished project under tight timelines.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-1.5">
-            <Badge title="Unreal Engine" hasAnim={false} />
-            <Badge title="C++ Blueprint" hasAnim={false} />
+            <Badge title="Unreal Engine 5" hasAnim={false} />
+            <Badge title="C++" hasAnim={false} />
+            <Badge title="Blueprint Visual Scripting" hasAnim={false} />
             <Badge title="Git" hasAnim={false} />
-            <Badge title="Microsoft Azure" hasAnim={false} />
           </div>
         </div>
       ),

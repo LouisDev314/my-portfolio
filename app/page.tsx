@@ -43,14 +43,13 @@ export default function Home() {
             {/* Copy */}
             <div className="space-y-4">
               <p className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-400 sm:text-lg">
-                Building the bridge between ideas and systems, I’m driven by the process of turning complexity into
-                something clear and usable. I enjoy creating solutions that feel intuitive on the surface, while
-                grounded in thoughtful design underneath.
+                I build production-ready systems by turning complex ideas into clear, reliable products. I focus on
+                software that feels simple to use, while being thoughtfully designed and robust under the hood.
               </p>
 
               <p className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-400 sm:text-lg">
-                Outside of code, the journey continues — through experiences, challenges, and growth. Each step shapes
-                how I think, build, and move forward.
+                Beyond code, I value continuous growth through building and problem-solving—applying each experience to
+                improve how I design systems, make decisions, and execute in real-world environments.
               </p>
             </div>
 
