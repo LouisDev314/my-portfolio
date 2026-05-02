@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import ThemeToggleBtn from '@/components/ThemeToggleBtn';
 import { siteConfig } from '@/lib/site';
+import { useScrollLock } from '@/hooks/use-scroll-lock';
 
 const NAV_SECTIONS = [
   {
@@ -31,6 +32,8 @@ export function NavbarMobile() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
+
+  useScrollLock(open);
 
   // Close on ESC
   useEffect(() => {

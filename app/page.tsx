@@ -4,11 +4,11 @@ import { projects } from '@/lib/projects';
 import Link from 'next/link';
 import { ImagesBadge } from '@/components/ui/images-badge';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { DraggableCard } from '@/components/DraggableCard';
 import InfinitePicturesCarousel from '@/components/InfinitePicturesCarousel';
 import ContactCard from '@/components/ContactCard';
 import { HomeHeroMotion } from '@/components/HomeHeroMotion';
 import { HomeExpandableCards } from '@/components/HomeExpandableCards';
+import { Terminal } from '@/components/ui/terminal';
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
       <main className="mx-auto max-w-7xl px-6 pt-24">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
         <section className="mt-24 sm:mt-48 lg:mt-40 mb-16 flex flex-col items-center text-center">
-          <h1 className="mb-8 text-[clamp(6rem,18vw,16rem)] font-black leading-[0.8] tracking-[-0.07em] break-words text-neutral-900 dark:text-neutral-100">
+          <h1 className="mb-8 text-[clamp(6rem,18vw,16rem)] font-black leading-[0.8] tracking-[-0.07em] wrap-break-word text-neutral-900 dark:text-neutral-100">
             Louis
           </h1>
           <p className="text-lg font-semibold uppercase tracking-[0.24em] text-neutral-600 dark:text-neutral-300 sm:text-xl">
@@ -44,14 +44,13 @@ export default function Home() {
             {/* Copy */}
             <div className="space-y-4">
               <p className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-400 sm:text-lg">
-                Building the bridge between ideas and systems, I’m driven by the process of turning complexity into
-                something clear and usable. I enjoy creating solutions that feel intuitive on the surface, while
-                grounded in thoughtful design underneath.
+                I build production-ready systems by turning complex ideas into clear, reliable products. I focus on
+                software that feels simple to use, while being thoughtfully designed and robust under the hood.
               </p>
 
               <p className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-400 sm:text-lg">
-                Outside of code, the journey continues — through experiences, challenges, and growth. Each step shapes
-                how I think, build, and move forward.
+                Beyond code, I value continuous growth through building and problem-solving—applying each experience to
+                improve how I design systems, make decisions, and execute in real-world environments.
               </p>
             </div>
 
@@ -69,27 +68,6 @@ export default function Home() {
             </div>
           </section>
         </RevealOnScroll>
-        {/*<RevealOnScroll>*/}
-        {/*  <section className="mt-16 sm:mt-28 lg:mt-36 mb-12 space-y-6">*/}
-        {/*    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">*/}
-        {/*      Quick Glance*/}
-        {/*    </h2>*/}
-
-        {/*    <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">*/}
-        {/*      Building the bridge between ideas and systems, I’m a developer who enjoys turning complexity into clarity.*/}
-        {/*      I work across full-stack development and AI, creating tools that are practical, reliable, and built for*/}
-        {/*      real-world use.*/}
-        {/*      <br />*/}
-        {/*      <br />*/}
-        {/*      Outside of code, the journey continues — through experiences, challenges, and growth. Each step shapes how*/}
-        {/*      I think, build, and move forward.*/}
-        {/*    </p>*/}
-
-        {/*    <InfinitePicturesCarousel />*/}
-
-        {/*    <ContactCard />*/}
-        {/*  </section>*/}
-        {/*</RevealOnScroll>*/}
 
         {/* ── B) Projects ────────────────────────────────────── */}
         <RevealOnScroll>
@@ -122,17 +100,35 @@ export default function Home() {
 
         {/* ── C) About Me ─────────────────────────────────────── */}
         <RevealOnScroll>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-0">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-12">
             About Me
           </h2>
           <section className="mb-16">
-            <DraggableCard />
+            <Terminal
+              commands={['whoami', 'focus', 'shipped', 'stack', 'values']}
+              outputs={{
+                0: ['Louis Chan — Full-Stack Developer'],
+                1: ['Production-ready AI systems, e-commerce platforms, backend architecture'],
+                2: [
+                  'Paper Bridge — RAG document intelligence platform',
+                  'PopBox Studio — Stripe-powered e-commerce platform',
+                ],
+                3: ['Next.js · Vercel · Node.js · TypeScript · FastAPI · PostgreSQL · Supabase · Stripe'],
+                4: ['Clean architecture · Performance · Practical product thinking'],
+              }}
+              username="louis@portfolio"
+              className="mt-6 max-w-2xl"
+              typingSpeed={22}
+              delayBetweenCommands={320}
+              initialDelay={120}
+              enableSound={false}
+            />
           </section>
         </RevealOnScroll>
       </main>
 
       {/* ── D) FOOTER ───────────────────────────────────────────── */}
-      <Footer homeOverlap />
+      <Footer />
     </div>
   );
 }
