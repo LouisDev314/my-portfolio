@@ -275,6 +275,36 @@ interface TerminalLine {
   content: string;
 }
 
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = () => setPrefersReducedMotion(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  return prefersReducedMotion;
+}
+
+function buildStaticLines(
+  commands: string[],
+  outputs: Record<number, string[]>,
+): TerminalLine[] {
+  return commands.flatMap((command, index) => [
+    { type: "command" as const, content: command },
+    ...(outputs[index] || []).map((content) => ({
+      type: "output" as const,
+      content,
+    })),
+  ]);
+}
+
 export interface TerminalProps {
   commands: string[];
   outputs?: Record<number, string[]>;
@@ -284,6 +314,7 @@ export interface TerminalProps {
   delayBetweenCommands?: number;
   initialDelay?: number;
   enableSound?: boolean;
+  staticMode?: boolean;
 }
 
 export function Terminal({
@@ -295,11 +326,14 @@ export function Terminal({
   delayBetweenCommands = 800,
   initialDelay = 500,
   enableSound = true,
+  staticMode = false,
 }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const inView = useInView(containerRef);
-  const { down, up } = useAudio(enableSound);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const shouldRenderStatic = staticMode || prefersReducedMotion;
+  const { down, up } = useAudio(enableSound && !shouldRenderStatic);
 
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [currentText, setCurrentText] = useState("");
@@ -317,14 +351,18 @@ export function Terminal({
     [outputs, commandIdx],
   );
   const isLastCommand = commandIdx === commands.length - 1;
+  const staticLines = useMemo(() => buildStaticLines(commands, outputs), [commands, outputs]);
+  const visibleLines = shouldRenderStatic ? staticLines : lines;
 
   useEffect(() => {
+    if (shouldRenderStatic) return;
     if (!inView || phase !== "idle") return;
     const t = setTimeout(() => setPhase("typing"), initialDelay);
     return () => clearTimeout(t);
-  }, [inView, phase, initialDelay]);
+  }, [inView, phase, initialDelay, shouldRenderStatic]);
 
   useEffect(() => {
+    if (shouldRenderStatic) return;
     if (phase !== "typing") return;
 
     if (charIdx < currentCommand.length) {
@@ -347,9 +385,10 @@ export function Terminal({
       }, 80);
       return () => clearTimeout(t);
     }
-  }, [phase, charIdx, currentCommand, typingSpeed, down, up]);
+  }, [phase, charIdx, currentCommand, typingSpeed, down, up, shouldRenderStatic]);
 
   useEffect(() => {
+    if (shouldRenderStatic) return;
     if (phase !== "executing") return;
 
     setLines((prev) => [...prev, { type: "command", content: currentCommand }]);
@@ -363,9 +402,10 @@ export function Terminal({
     } else {
       setPhase("pausing");
     }
-  }, [phase, currentCommand, currentOutputs.length, isLastCommand]);
+  }, [phase, currentCommand, currentOutputs.length, isLastCommand, shouldRenderStatic]);
 
   useEffect(() => {
+    if (shouldRenderStatic) return;
     if (phase !== "outputting") return;
 
     if (outputIdx >= 0 && outputIdx < currentOutputs.length) {
@@ -387,9 +427,10 @@ export function Terminal({
       }, 300);
       return () => clearTimeout(t);
     }
-  }, [phase, outputIdx, currentOutputs, isLastCommand]);
+  }, [phase, outputIdx, currentOutputs, isLastCommand, shouldRenderStatic]);
 
   useEffect(() => {
+    if (shouldRenderStatic) return;
     if (phase !== "pausing") return;
     const t = setTimeout(() => {
       setCharIdx(0);
@@ -398,7 +439,7 @@ export function Terminal({
       setPhase("typing");
     }, delayBetweenCommands);
     return () => clearTimeout(t);
-  }, [phase, delayBetweenCommands]);
+  }, [phase, delayBetweenCommands, shouldRenderStatic]);
 
   useEffect(() => {
     const interval = setInterval(() => setCursorVisible((v) => !v), 530);
@@ -409,7 +450,7 @@ export function Terminal({
     if (contentRef.current) {
       contentRef.current.scrollTop = contentRef.current.scrollHeight;
     }
-  }, [lines, phase]);
+  }, [visibleLines, phase]);
 
   const prompt = (
     <span className="text-neutral-500">
@@ -424,11 +465,11 @@ export function Terminal({
     <div
       ref={containerRef}
       className={cn(
-        "mx-auto w-full max-w-xl px-4 font-mono text-xs",
+        "mx-auto w-full max-w-xl px-0 font-mono text-xs",
         className,
       )}
     >
-      <div className="overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 shadow-2xl">
+      <div className="overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 shadow-xl">
         {/* Title Bar */}
         <div className="flex items-center gap-2 bg-neutral-800 px-4 py-3">
           <div className="flex items-center gap-1.5">
@@ -447,10 +488,10 @@ export function Terminal({
         {/* Terminal Content */}
         <div
           ref={contentRef}
-          className="no-visible-scrollbar h-80 overflow-y-auto p-4 font-mono"
+          className="no-visible-scrollbar max-h-80 min-h-64 overflow-y-auto overflow-x-hidden p-4 font-mono text-[0.75rem] sm:text-xs"
         >
-          {lines.map((line, i) => (
-            <div key={i} className="leading-relaxed whitespace-pre-wrap">
+          {visibleLines.map((line, i) => (
+            <div key={i} className="leading-relaxed whitespace-pre-wrap break-words">
               {line.type === "command" ? (
                 <span>
                   {prompt}
@@ -462,18 +503,18 @@ export function Terminal({
             </div>
           ))}
 
-          {phase === "typing" && (
-            <div className="leading-relaxed whitespace-pre-wrap">
+          {!shouldRenderStatic && phase === "typing" && (
+            <div className="leading-relaxed whitespace-pre-wrap break-words">
               {prompt}
               <SyntaxHighlightedText text={currentText} />
               <span className="ml-0.5 inline-block h-4 w-2 bg-neutral-300 align-middle" />
             </div>
           )}
 
-          {(phase === "done" ||
+          {!shouldRenderStatic && (phase === "done" ||
             phase === "pausing" ||
             phase === "outputting") && (
-            <div className="leading-relaxed whitespace-pre-wrap">
+            <div className="leading-relaxed whitespace-pre-wrap break-words">
               {prompt}
               <span
                 className={cn(
