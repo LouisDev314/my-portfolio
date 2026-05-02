@@ -1,5 +1,3 @@
-'use client';
-
 import RegularCard from '@/components/RegularCard';
 import CopyBtn from '@/components/CopyBtn';
 import SocialBtns from '@/components/SocialBtns';

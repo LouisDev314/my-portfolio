@@ -1,101 +1,35 @@
-'use client';
-
 import ProjectCard from '@/components/ProjectCard';
 import Footer from '@/components/Footer';
 import { projects } from '@/lib/projects';
 import Link from 'next/link';
-import { ExpandableCard, CardItem } from '@/components/ExpandableCard';
-import { MapPin, Layers } from 'lucide-react';
-import { Globe } from '@/components/Globe';
 import { ImagesBadge } from '@/components/ui/images-badge';
-import TechStack from '@/components/TechStack';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { motion } from 'motion/react';
-import { FlipWords } from '@/components/ui/flip-words';
-import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import { DraggableCard } from '@/components/DraggableCard';
-import { Cover } from '@/components/ui/cover';
 import InfinitePicturesCarousel from '@/components/InfinitePicturesCarousel';
 import ContactCard from '@/components/ContactCard';
-import React from 'react';
-
-const cards: CardItem[] = [
-  {
-    id: 'canada',
-    title: 'Based in Canada',
-    description: 'Remote',
-    icon: MapPin,
-    iconColor: 'text-red-600',
-    content: () => {
-      return <Globe />;
-    },
-  },
-  {
-    id: 'tech-stack',
-    title: 'Tech Stack',
-    description: 'Skill set',
-    icon: Layers,
-    iconColor: 'text-indigo-500',
-    content: () => {
-      return <TechStack />;
-    },
-  },
-];
+import { HomeHeroMotion } from '@/components/HomeHeroMotion';
+import { HomeExpandableCards } from '@/components/HomeExpandableCards';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <main className="mx-auto max-w-7xl px-6 pt-28">
+      <main className="mx-auto max-w-7xl px-6 pt-24">
         {/* ── A) HERO ─────────────────────────────────────────────── */}
         <section className="mt-24 sm:mt-48 lg:mt-40 mb-16 flex flex-col items-center text-center">
-          <h1 className="mb-6 text-[clamp(6rem,18vw,16rem)] font-black leading-[0.8] tracking-[-0.07em] break-words text-neutral-900 dark:text-neutral-100">
+          <h1 className="mb-8 text-[clamp(6rem,18vw,16rem)] font-black leading-[0.8] tracking-[-0.07em] break-words text-neutral-900 dark:text-neutral-100">
             Louis
           </h1>
+          <p className="text-lg font-semibold uppercase tracking-[0.24em] text-neutral-600 dark:text-neutral-300 sm:text-xl">
+            Full Stack Developer
+          </p>
 
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: { transition: { delayChildren: 0.15 } },
-            }}
-            className="flex flex-col items-center text-center">
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 8 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
-              }}
-              className="mt-8 text-xl font-medium uppercase leading-relaxed tracking-widest text-neutral-400 dark:text-neutral-500">
-              <div className="uppercase mx-auto tracking-[0.4em] text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-500/80 dark:text-neutral-400/70">
-                Technology as a
-                <br className="sm:hidden" />
-                <FlipWords words={['bridge', 'string', 'knot']} duration={2500} />
-              </div>
-            </motion.div>
-            <br />
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 8 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
-              }}
-              className="text-base italic font-medium uppercase leading-relaxed tracking-widest text-neutral-400 dark:text-neutral-500">
-              <TextGenerateEffect
-                words={'Connect. Build. Impact.'}
-                duration={1}
-                textClassName="text-lg sm:text-xl font-medium tracking-[0.08em]"
-              />
-            </motion.div>
-
-            <div className="mt-6">
-              <Cover className="text-amber-400 uppercase italic text-lg sm:text-xl">sic itur ad astra</Cover>
-            </div>
-          </motion.div>
+          <HomeHeroMotion />
         </section>
 
         {/* ── EXPANDABLE CARDS ────────────────────────────────────── */}
         <RevealOnScroll>
           <section className="mt-12 sm:mt-40 lg:mt-36 mb-10 gap-4">
-            <ExpandableCard cards={cards} />
+            <HomeExpandableCards />
           </section>
         </RevealOnScroll>
 
@@ -198,7 +132,7 @@ export default function Home() {
       </main>
 
       {/* ── D) FOOTER ───────────────────────────────────────────── */}
-      <Footer />
+      <Footer homeOverlap />
     </div>
   );
 }

@@ -1,10 +1,8 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import SocialBtns from '@/components/SocialBtns';
+import { projects } from '@/lib/projects';
 
 type FooterLink = {
   label: string;
@@ -35,11 +33,9 @@ const footerGroups: FooterGroup[] = [
   },
   {
     title: 'Projects',
-    links: [
-      { label: 'Paper Bridge', href: 'https://paper-bridge.vercel.app/dashboard', external: true },
-      { label: 'Project 2', href: 'https://example.com', external: true },
-      { label: 'Project 3', href: 'https://example.com', external: true },
-    ],
+    links: projects.flatMap((project) =>
+      project.liveUrl ? [{ label: project.name, href: project.liveUrl, external: true }] : [],
+    ),
   },
   {
     title: 'Legal',
@@ -50,16 +46,14 @@ const footerGroups: FooterGroup[] = [
   },
 ];
 
-export default function Footer() {
-  const pathname = usePathname();
-  const isHomePage = pathname === '/';
+export default function Footer({ homeOverlap = false }: { homeOverlap?: boolean }) {
   const year = new Date().getFullYear();
 
   return (
     <footer
       className={cn(
         'mt-0 border-t border-neutral-200 bg-white dark:border-neutral-800/60 dark:bg-neutral-950',
-        isHomePage ? '-mt-16' : 'mt-24',
+        homeOverlap ? '-mt-16' : 'mt-24',
       )}>
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="flex items-center gap-2">
@@ -67,9 +61,10 @@ export default function Footer() {
             <Image
               src="/portfolio-logo.webp"
               alt="My portfolio logo"
-              width={500}
-              height={300}
-              className="rounded-full"
+              width={32}
+              height={32}
+              className="size-8 rounded-full object-cover"
+              loading="lazy"
             />
           </div>
           <span className="text-base font-semibold text-neutral-900 dark:text-neutral-100">Louis Chan</span>
@@ -90,7 +85,7 @@ export default function Footer() {
                       <a
                         href={link.href}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="text-sm text-neutral-600 transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:text-neutral-300 dark:hover:text-white">
                         {link.label}
                       </a>

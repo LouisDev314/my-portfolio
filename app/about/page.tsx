@@ -1,5 +1,3 @@
-'use client';
-
 import Footer from '@/components/Footer';
 import TechStackChips from '@/components/TechStackChips';
 import { WorkTimeline } from '@/components/WorkTimeline';

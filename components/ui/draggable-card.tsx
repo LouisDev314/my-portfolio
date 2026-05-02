@@ -6,25 +6,20 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  animate,
-  useVelocity,
-  useAnimationControls,
+  useReducedMotion,
 } from 'motion/react';
 
 export const DraggableCardBody = ({ className, children }: { className?: string; children?: React.ReactNode }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const cardRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimationControls();
+  const prefersReducedMotion = useReducedMotion();
   const [constraints, setConstraints] = useState({
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
   });
-
-  const velocityX = useVelocity(mouseX);
-  const velocityY = useVelocity(mouseY);
 
   const springConfig = {
     stiffness: 100,
@@ -40,24 +35,18 @@ export const DraggableCardBody = ({ className, children }: { className?: string;
   const glareOpacity = useSpring(useTransform(mouseX, [-300, 0, 300], [0.2, 0, 0.2]), springConfig);
 
   useEffect(() => {
-    // Update constraints when component mounts or window resizes
     const updateConstraints = () => {
-      if (typeof window !== 'undefined') {
-        setConstraints({
-          top: -window.innerHeight / 2,
-          left: -window.innerWidth / 2,
-          right: window.innerWidth / 2,
-          bottom: window.innerHeight / 2,
-        });
-      }
+      setConstraints({
+        top: -window.innerHeight / 2,
+        left: -window.innerWidth / 2,
+        right: window.innerWidth / 2,
+        bottom: window.innerHeight / 2,
+      });
     };
 
     updateConstraints();
-
-    // Add resize listener
     window.addEventListener('resize', updateConstraints);
 
-    // Clean up
     return () => {
       window.removeEventListener('resize', updateConstraints);
     };
@@ -87,56 +76,23 @@ export const DraggableCardBody = ({ className, children }: { className?: string;
   return (
     <motion.div
       ref={cardRef}
-      drag
+      drag={!prefersReducedMotion}
       dragConstraints={constraints}
       onDragStart={() => {
         document.body.style.cursor = 'grabbing';
       }}
-      onDragEnd={(event, info) => {
+      onDragEnd={() => {
         document.body.style.cursor = 'default';
-
-        controls.start({
-          rotateX: 0,
-          rotateY: 0,
-          transition: {
-            type: 'spring',
-            ...springConfig,
-          },
-        });
-        const currentVelocityX = velocityX.get();
-        const currentVelocityY = velocityY.get();
-
-        const velocityMagnitude = Math.sqrt(currentVelocityX * currentVelocityX + currentVelocityY * currentVelocityY);
-        const bounce = Math.min(0.8, velocityMagnitude / 1000);
-
-        animate(info.point.x, info.point.x + currentVelocityX * 0.3, {
-          duration: 0.8,
-          ease: [0.2, 0, 0, 1],
-          bounce,
-          type: 'spring',
-          stiffness: 50,
-          damping: 15,
-          mass: 0.8,
-        });
-
-        animate(info.point.y, info.point.y + currentVelocityY * 0.3, {
-          duration: 0.8,
-          ease: [0.2, 0, 0, 1],
-          bounce,
-          type: 'spring',
-          stiffness: 50,
-          damping: 15,
-          mass: 0.8,
-        });
+        mouseX.set(0);
+        mouseY.set(0);
       }}
       style={{
-        rotateX,
-        rotateY,
-        opacity,
+        rotateX: prefersReducedMotion ? 0 : rotateX,
+        rotateY: prefersReducedMotion ? 0 : rotateY,
+        opacity: prefersReducedMotion ? 1 : opacity,
         willChange: 'transform',
       }}
-      animate={controls}
-      whileHover={{ scale: 1.02 }}
+      whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
@@ -146,7 +102,7 @@ export const DraggableCardBody = ({ className, children }: { className?: string;
       {children}
       <motion.div
         style={{
-          opacity: glareOpacity,
+          opacity: prefersReducedMotion ? 0 : glareOpacity,
         }}
         className="pointer-events-none absolute inset-0 bg-white select-none"
       />

@@ -1,6 +1,5 @@
-'use client';
-
 import Link from 'next/link';
+import { BackToTopButton } from '@/components/BackToTopButton';
 
 const LAST_UPDATED = 'February 22, 2026'; // <-- update anytime
 const CONTACT_EMAIL = 'louiscch314@gmail.com'; // <-- your email
@@ -223,15 +222,7 @@ export default function TermsPage() {
             Privacy Policy <span aria-hidden>→</span>
           </Link>
 
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white/70 px-4 py-2 text-sm font-medium text-neutral-900 shadow-sm backdrop-blur-md transition hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-neutral-100 dark:hover:bg-white/10">
-            Back to top <span aria-hidden>↑</span>
-          </a>
+          <BackToTopButton />
         </div>
       </main>
     </Container>

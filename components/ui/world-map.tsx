@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import DottedMap from 'dotted-map';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
+import { useReducedMotion } from 'motion/react';
 
 interface MapProps {
   dots?: Array<{
@@ -14,10 +15,8 @@ interface MapProps {
 }
 
 export default function WorldMap({ dots = [], lineColor = '#0ea5e9' }: MapProps) {
-  const svgRef = useRef<SVGSVGElement>(null);
-
-  // ✅ avoid hydration mismatch with next-themes
   const [mounted, setMounted] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   useEffect(() => setMounted(true), []);
 
   const { resolvedTheme } = useTheme();
@@ -60,21 +59,19 @@ export default function WorldMap({ dots = [], lineColor = '#0ea5e9' }: MapProps)
         <Image
           src={src}
           alt="world map"
-          height={495}
-          width={1056}
+          fill
+          sizes="(max-width: 768px) 100vw, 1056px"
           draggable={false}
           unoptimized
-          className="h-full w-full mask-[linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none"
+          className="mask-[linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none object-fill"
         />
       ) : (
         <div className="h-full w-full" />
       )}
 
       <svg
-        ref={svgRef}
         viewBox="0 0 800 400"
         className="w-full h-full absolute inset-0 pointer-events-none select-none">
-        {/* ✅ Lines are rendered fully (no draw animation) */}
         {dots.map((dot, i) => {
           const startPoint = projectPoint(dot.start.lat, dot.start.lng);
           const endPoint = projectPoint(dot.end.lat, dot.end.lng);
@@ -100,7 +97,6 @@ export default function WorldMap({ dots = [], lineColor = '#0ea5e9' }: MapProps)
           </linearGradient>
         </defs>
 
-        {/* Points + pulse (keep as-is) */}
         {dots.map((dot, i) => (
           <g key={`points-group-${i}`}>
             <g>
@@ -110,15 +106,17 @@ export default function WorldMap({ dots = [], lineColor = '#0ea5e9' }: MapProps)
                 r="2"
                 fill={lineColor}
               />
-              <circle
-                cx={projectPoint(dot.start.lat, dot.start.lng).x}
-                cy={projectPoint(dot.start.lat, dot.start.lng).y}
-                r="2"
-                fill={lineColor}
-                opacity="0.5">
-                <animate attributeName="r" from="2" to="8" dur="1.5s" begin="0s" repeatCount="indefinite" />
-                <animate attributeName="opacity" from="0.5" to="0" dur="1.5s" begin="0s" repeatCount="indefinite" />
-              </circle>
+              {!prefersReducedMotion && (
+                <circle
+                  cx={projectPoint(dot.start.lat, dot.start.lng).x}
+                  cy={projectPoint(dot.start.lat, dot.start.lng).y}
+                  r="2"
+                  fill={lineColor}
+                  opacity="0.5">
+                  <animate attributeName="r" from="2" to="8" dur="1.5s" begin="0s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" from="0.5" to="0" dur="1.5s" begin="0s" repeatCount="indefinite" />
+                </circle>
+              )}
             </g>
 
             <g>
@@ -128,15 +126,17 @@ export default function WorldMap({ dots = [], lineColor = '#0ea5e9' }: MapProps)
                 r="2"
                 fill={lineColor}
               />
-              <circle
-                cx={projectPoint(dot.end.lat, dot.end.lng).x}
-                cy={projectPoint(dot.end.lat, dot.end.lng).y}
-                r="2"
-                fill={lineColor}
-                opacity="0.5">
-                <animate attributeName="r" from="2" to="8" dur="1.5s" begin="0s" repeatCount="indefinite" />
-                <animate attributeName="opacity" from="0.5" to="0" dur="1.5s" begin="0s" repeatCount="indefinite" />
-              </circle>
+              {!prefersReducedMotion && (
+                <circle
+                  cx={projectPoint(dot.end.lat, dot.end.lng).x}
+                  cy={projectPoint(dot.end.lat, dot.end.lng).y}
+                  r="2"
+                  fill={lineColor}
+                  opacity="0.5">
+                  <animate attributeName="r" from="2" to="8" dur="1.5s" begin="0s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" from="0.5" to="0" dur="1.5s" begin="0s" repeatCount="indefinite" />
+                </circle>
+              )}
             </g>
           </g>
         ))}

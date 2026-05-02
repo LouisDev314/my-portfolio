@@ -83,3 +83,14 @@ canvas {
   animation-direction: var(--animation-direction, forwards);
   animation-play-state: var(--animation-play-state, running);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+
+  .animate-scroll {
+    animation: none;
+    transform: none;
+  }
+}
