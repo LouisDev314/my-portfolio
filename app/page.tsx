@@ -4,7 +4,6 @@ import { projects } from '@/lib/projects';
 import Link from 'next/link';
 import { ImagesBadge } from '@/components/ui/images-badge';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { DraggableCard } from '@/components/DraggableCard';
 import InfinitePicturesCarousel from '@/components/InfinitePicturesCarousel';
 import ContactCard from '@/components/ContactCard';
 import { HomeHeroMotion } from '@/components/HomeHeroMotion';
@@ -125,9 +124,7 @@ export default function Home() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-0">
             About Me
           </h2>
-          <section className="mb-16">
-            <DraggableCard />
-          </section>
+          <section className="mb-16"></section>
         </RevealOnScroll>
       </main>
 
