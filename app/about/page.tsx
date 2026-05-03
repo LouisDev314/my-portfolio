@@ -11,8 +11,8 @@ export default function AboutPage() {
           <PageHeaderTitle title="About Me" />
           <div className="text-sm md:text-base text-center space-y-4 text-neutral-600 dark:text-neutral-400 leading-relaxed md:mt-12">
             <p>
-              Hi, I’m Louis — a full-stack developer based in Calgary, AB, building products that solve real-world
-              problems and create meaningful impact.
+              Hi, I’m Louis — a full-stack developer driven to contribute globally by building products that solve
+              real-world problems and create meaningful impact.
             </p>
             <p>
               I work across the stack with React, Next.js, Node.js, and TypeScript, crafting scalable systems, intuitive
