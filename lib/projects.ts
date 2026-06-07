@@ -64,4 +64,28 @@ export const projects: Project[] = [
     liveUrl: 'https://www.popboxstudio.com/',
     repoUrl: 'https://github.com/LouisDev314/popbox-studio-next',
   },
+  {
+    id: '3',
+    name: 'My Last Day',
+    description:
+      'SEO-driven utility web app for planning resignations and calculating key notice-period dates around local weekends and public holidays.',
+    highlights: [
+      'Calculates Last Working Day, Official Last Day, and Working Days Left',
+      'Recommends the best day to quit based on location and notice period',
+      'Statically generated pages built for fast, search-friendly discovery',
+    ],
+    imgUrl: '/my-last-day-logo.webp',
+    techs: [
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'Shadcn/UI',
+      'SEO',
+      'Static Generation',
+      'Date Calculation',
+      'Public Holiday Data',
+    ],
+    liveUrl: 'https://www.mylastday.xyz',
+    repoUrl: 'https://github.com/LouisDev314/my-last-day',
+  },
 ];
