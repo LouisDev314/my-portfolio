@@ -9,6 +9,7 @@ import type { ReactNode } from 'react';
 
 interface ProjectCardProps {
   project: Project;
+  imageLoading?: 'eager' | 'lazy';
 }
 
 type ProjectAction = {
@@ -18,7 +19,7 @@ type ProjectAction = {
   icon: ReactNode;
 };
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, imageLoading = 'lazy' }: ProjectCardProps) {
   const actions: ProjectAction[] = [];
 
   if (project.liveUrl) {
@@ -57,7 +58,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           fill
           className="object-cover object-top"
           sizes="(max-width: 768px) 100vw, 33vw"
-          loading="lazy"
+          loading={imageLoading}
         />
       </div>
 
