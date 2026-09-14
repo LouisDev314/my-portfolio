@@ -48,7 +48,7 @@ export const projects: Project[] = [
       'Inventory reservations backed by PostgreSQL/Supabase',
       'Admin workflows for production-ready order management',
     ],
-    imgUrl: '/store-logo.jpeg',
+    imgUrl: '/store-logo.png',
     techs: [
       'Next.js',
       'Node.js',
