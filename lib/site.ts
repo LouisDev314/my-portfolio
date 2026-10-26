@@ -8,7 +8,6 @@ export const siteConfig = {
   links: {
     github: 'https://github.com/LouisDev314',
     linkedIn: 'https://www.linkedin.com/in/lcch/',
-    telegram: 'https://t.me/louisdev314',
     whatsApp: 'https://wa.me/13682998117',
   },
 } as const;

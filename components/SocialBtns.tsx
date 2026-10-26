@@ -2,7 +2,6 @@
 
 import GitHubIcon from '@/assets/icons/github-icon';
 import WhatsAppIcon from '@/assets/icons/whatsapp-icon';
-import TelegramIcon from '@/assets/icons/telegram-icon';
 import WeChatIcon from '@/assets/icons/wechat-icon';
 import { Modal } from '@/components/Modal';
 import Image from 'next/image';
@@ -47,11 +46,6 @@ export default function SocialBtns({ className }: { className?: string }) {
       icon: <WhatsAppIcon className="fill-[#25D366] size-5" />,
       href: siteConfig.links.whatsApp,
       label: 'WhatsApp',
-    },
-    {
-      icon: <TelegramIcon className="fill-[#26A5E4] size-5" />,
-      href: siteConfig.links.telegram,
-      label: 'Telegram',
     },
   ];
 
